@@ -1,0 +1,1964 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ROLLER — Website Stats & Numbers Registry</title>
+<style>
+  /* ─── ROLLER Brand ─────────────────────────────── */
+  :root {
+    --blue-10: #011840;
+    --blue-30: #033180;
+    --blue-50: #0960F6;
+    --blue-90: #CEDFFD;
+    --blue-95: #EBF2FE;
+    --white:   #FFFFFF;
+    --green:   #16A34A;
+    --amber:   #D97706;
+    --red:     #DC2626;
+    --gray-50: #F8FAFC;
+    --gray-100:#F1F5F9;
+    --gray-200:#E2E8F0;
+    --gray-500:#64748B;
+    --gray-700:#334155;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "Proxima Nova", Arial, sans-serif;
+    background: var(--gray-50);
+    color: var(--blue-10);
+    min-height: 100vh;
+  }
+
+  /* ─── TOP NAV ──────────────────────────────────── */
+  .topbar {
+    background: var(--blue-10);
+    padding: 16px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .topbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .topbar-logo {
+    width: 32px; height: 32px;
+    background: var(--blue-50);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; font-weight: 900; color: white;
+  }
+  .topbar-title {
+    color: var(--white);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+  .topbar-sub {
+    color: var(--blue-90);
+    font-size: 12px;
+    margin-top: 1px;
+  }
+  .topbar-meta {
+    color: var(--blue-90);
+    font-size: 12px;
+    text-align: right;
+  }
+
+  /* ─── HERO ─────────────────────────────────────── */
+  .hero {
+    background: linear-gradient(135deg, var(--blue-30) 0%, var(--blue-10) 100%);
+    padding: 48px 40px 40px;
+    color: var(--white);
+  }
+  .hero h1 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+  .hero p {
+    color: var(--blue-90);
+    font-size: 14px;
+    max-width: 640px;
+    line-height: 1.6;
+    margin-bottom: 32px;
+  }
+
+  /* ─── SUMMARY CARDS ────────────────────────────── */
+  .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  .summary-card {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 12px;
+    padding: 20px;
+    backdrop-filter: blur(8px);
+  }
+  .summary-card .num {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .summary-card .label {
+    font-size: 12px;
+    color: var(--blue-90);
+    line-height: 1.4;
+  }
+  .summary-card .indicator {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+
+  /* ─── MAIN CONTENT ─────────────────────────────── */
+  .content {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 40px 80px;
+  }
+
+  /* ─── FILTER BAR ───────────────────────────────── */
+  .filter-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+  }
+  .filter-btn {
+    border: 1.5px solid var(--gray-200);
+    background: var(--white);
+    color: var(--gray-700);
+    border-radius: 8px;
+    padding: 7px 16px;
+    font-size: 13px;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.15s;
+    font-weight: 500;
+  }
+  .filter-btn:hover { border-color: var(--blue-50); color: var(--blue-50); }
+  .filter-btn.active { background: var(--blue-50); color: var(--white); border-color: var(--blue-50); }
+  .filter-spacer { flex: 1; }
+  .search-box {
+    border: 1.5px solid var(--gray-200);
+    background: var(--white);
+    border-radius: 8px;
+    padding: 7px 14px 7px 34px;
+    font-size: 13px;
+    font-family: inherit;
+    color: var(--blue-10);
+    width: 220px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' fill='%2364748B' viewBox='0 0 24 24'%3E%3Ccircle cx='11' cy='11' r='8' stroke='%2364748B' stroke-width='2' fill='none'/%3E%3Cpath d='m21 21-4.35-4.35' stroke='%2364748B' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    outline: none;
+  }
+  .search-box:focus { border-color: var(--blue-50); }
+
+  /* ─── COMPONENT CARD ───────────────────────────── */
+  .component-card {
+    background: var(--white);
+    border: 1.5px solid var(--gray-200);
+    border-radius: 16px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+  }
+  .component-card:hover { box-shadow: 0 4px 24px rgba(9,96,246,0.08); }
+
+  .card-header {
+    padding: 24px 28px;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .card-icon {
+    width: 48px; height: 48px;
+    border-radius: 12px;
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+  }
+  .card-icon.global    { background: #DCFCE7; }
+  .card-icon.nonglobal { background: #FEF9C3; }
+  .card-icon.image     { background: #FEE2E2; }
+  .card-icon.carousel  { background: var(--blue-95); }
+
+  .card-meta { flex: 1; }
+  .card-title-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 6px;
+  }
+  .card-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--blue-10);
+  }
+  .badge {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 9px;
+    border-radius: 20px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .badge-global    { background: #DCFCE7; color: #15803D; }
+  .badge-nonglobal { background: #FEF9C3; color: #92400E; }
+  .badge-image     { background: #FEE2E2; color: #991B1B; }
+  .badge-carousel  { background: var(--blue-95); color: var(--blue-30); }
+
+  .card-component-name {
+    font-size: 12px;
+    font-family: "Courier New", monospace;
+    background: var(--gray-100);
+    color: var(--gray-700);
+    padding: 2px 8px;
+    border-radius: 4px;
+    border: 1px solid var(--gray-200);
+  }
+  .card-description {
+    font-size: 13px;
+    color: var(--gray-500);
+    line-height: 1.5;
+    margin-bottom: 12px;
+  }
+  .card-stats-row {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+  .stat-pill {
+    font-size: 12px;
+    color: var(--gray-700);
+    background: var(--gray-100);
+    border: 1px solid var(--gray-200);
+    padding: 3px 10px;
+    border-radius: 6px;
+    font-weight: 500;
+  }
+
+  /* ─── OWNER BADGE ──────────────────────────────── */
+  .owner { font-size: 11px; padding: 3px 8px; border-radius: 5px; font-weight: 600; }
+  .owner-pmm  { background: #EDE9FE; color: #6D28D9; }
+  .owner-dg   { background: #FCE7F3; color: #9D174D; }
+  .owner-ian  { background: #DBEAFE; color: #1D4ED8; }
+  .owner-event{ background: #D1FAE5; color: #065F46; }
+  .owner-content { background: #FEF3C7; color: #B45309; }
+  .owner-brand { background: #F3E8FF; color: #7C3AED; }
+  .owner-na   { background: var(--gray-100); color: var(--gray-500); }
+
+  /* ─── ACCORDION ────────────────────────────────── */
+  .accordion-trigger {
+    width: 100%;
+    background: none;
+    border: none;
+    border-top: 1.5px solid var(--gray-200);
+    padding: 14px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--blue-10);
+    transition: background 0.15s;
+  }
+  .accordion-trigger:hover { background: var(--gray-50); }
+  .accordion-trigger .chevron {
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    background: var(--gray-100);
+    display: flex; align-items: center; justify-content: center;
+    transition: transform 0.25s, background 0.15s;
+    flex-shrink: 0;
+  }
+  .accordion-trigger .chevron svg {
+    transition: transform 0.25s;
+  }
+  .accordion-trigger.open .chevron { background: var(--blue-95); }
+  .accordion-trigger.open .chevron svg { transform: rotate(180deg); }
+  .accordion-count {
+    background: var(--blue-95);
+    color: var(--blue-30);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-left: 8px;
+  }
+
+  .accordion-body {
+    display: none;
+    padding: 0 28px 20px;
+  }
+  .accordion-body.open { display: block; }
+
+  /* ─── PAGE CATEGORY GROUP ──────────────────────── */
+  .page-group {
+    margin-top: 16px;
+  }
+  .page-group-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--gray-500);
+    margin-bottom: 8px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--gray-200);
+  }
+  .page-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .page-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 10px;
+    border-radius: 8px;
+    transition: background 0.12s;
+  }
+  .page-row:hover { background: var(--gray-50); }
+  .page-row-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--blue-10);
+    flex: 1;
+    min-width: 0;
+  }
+  .page-row-url {
+    font-size: 11px;
+    color: var(--gray-500);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 280px;
+  }
+  .page-row-url a {
+    color: var(--blue-50);
+    text-decoration: none;
+  }
+  .page-row-url a:hover { text-decoration: underline; }
+  .page-note {
+    font-size: 11px;
+    color: var(--amber);
+    background: #FEF9C3;
+    padding: 2px 7px;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+
+  /* ─── SECTION LABEL ────────────────────────────── */
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--gray-500);
+    margin-bottom: 16px;
+    margin-top: 8px;
+  }
+
+  /* ─── HIDDEN ───────────────────────────────────── */
+  .hidden { display: none !important; }
+
+  /* ─── LEGEND ───────────────────────────────────── */
+  .legend {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 12px;
+    color: var(--gray-700);
+  }
+  .legend-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ─── RESPONSIVE ───────────────────────────────── */
+  @media (max-width: 768px) {
+    .summary-grid { grid-template-columns: repeat(2, 1fr); }
+    .content { padding: 24px 20px 60px; }
+    .hero { padding: 32px 20px 28px; }
+    .topbar { padding: 14px 20px; }
+    .page-row-url { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="topbar-brand">
+    <div class="topbar-logo">R</div>
+    <div><div class="topbar-title">ROLLER Marketing</div><div class="topbar-sub">Website Content Operations</div></div>
+  </div>
+  <div class="topbar-meta">Full site audit · May 2026<br>148 content pages · Blog &amp; legal/redirects excluded</div>
+</div>
+<div class="hero">
+  <h1>Stats &amp; Numbers Registry</h1>
+  <p>Full live audit of roller.software — 148 content pages crawled (blog, legal pages, and redirect stubs excluded). Every page was checked for CSS class presence and text pattern matches. A page can appear in multiple categories simultaneously.</p>
+  <div class="summary-grid">
+    <div class="summary-card"><div class="num">148</div><div class="label">Content pages audited (sitemap + events + unlisted)</div></div>
+    <div class="summary-card"><div class="num" style="color:#86EFAC;">7</div><div class="label"><span class="dot" style="background:#22C55E;"></span>Categories tracked — 2 new from this audit</div></div>
+    <div class="summary-card"><div class="num" style="color:#FDE68A;">81</div><div class="label"><span class="dot" style="background:#F59E0B;"></span>Pages using global logo-set component</div></div>
+    <div class="summary-card"><div class="num" style="color:#FCA5A5;">37</div><div class="label"><span class="dot" style="background:#EF4444;"></span>Pages with user review badge images</div></div>
+  </div>
+</div>
+<div class="content">
+  <div class="chart-section">
+    <div class="chart-title">Component Usage Across the Site</div>
+    <div class="chart-sub">Pages per category — one page can appear in multiple categories · 148 content pages audited</div>
+    <div class="chart-bars" id="chartBars"></div>
+  </div>
+  <div class="filter-bar">
+    <button class="filter-btn active" onclick="filterCards('all',this)">All</button>
+    <button class="filter-btn" onclick="filterCards('global',this)">🟢 Global</button>
+    <button class="filter-btn" onclick="filterCards('nonglobal',this)">🟡 Non-global</button>
+    <button class="filter-btn" onclick="filterCards('image',this)">🔴 Image-baked</button>
+    <button class="filter-btn" onclick="filterCards('review',this)">🟣 Review badges</button>
+    <button class="filter-btn" onclick="filterCards('carousel',this)">🔵 Carousel</button>
+    <button class="filter-btn" onclick="filterCards('standalone',this)">🟠 Standalone</button>
+    <div class="filter-spacer"></div>
+    <input class="search-box" type="text" placeholder="Search pages…" id="searchInput" oninput="searchPages()">
+  </div>
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:#22C55E;"></div><strong>Global</strong> — update once, applies everywhere</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#F59E0B;"></div><strong>Non-global</strong> — hardcoded, per-page edits needed</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#EF4444;"></div><strong>Image-baked</strong> — number inside image asset</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#7C3AED;"></div><strong>Review badges</strong> — user_review_badges component</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#0960F6;"></div><strong>Carousel</strong> — dark logo carousel</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#E11D48;"></div><strong>Standalone text</strong> — number in prose, no wrapper</div>
+  </div>
+
+  <div class="component-card" data-type="global" id="card-global-stats">
+    <div class="card-header"><div class="card-icon global">📊</div><div class="card-meta">
+      <div class="card-title-row"><span class="card-title">Global Stats Widget</span><span class="badge badge-global">Global</span><span class="card-component-name">global global-4-stats</span></div>
+      <p class="card-description">Pages where the <code>global-4-stats</code> CSS class was detected. Shared CMS component — update once, all 41 pages reflect the change.</p>
+      <div class="card-stats-row"><span class="stat-pill">41 pages</span><span class="stat-pill">Features · Partner · DG LP · Home</span><span class="owner owner-pmm">PMM</span><span class="owner owner-dg">DG</span><span class="owner owner-ian">Ian</span></div>
+    </div></div>
+    <div class="preview-panel"><div class="preview-label">How it looks on the website</div><div class="preview-wrap">
+      <div class="mockup-stats-light">
+        <div class="left"><div class="eyebrow">All-in-one venue management software</div><div class="heading">Supporting your business every step of the way</div></div>
+        <div class="grid">
+          <div class="mockup-stat-item"><div class="val">300</div><div class="lbl">team members</div></div>
+          <div class="mockup-stat-item"><div class="val">3,000</div><div class="lbl">customers</div></div>
+          <div class="mockup-stat-item"><div class="val">24/7</div><div class="lbl">global support</div></div>
+          <div class="mockup-stat-item"><div class="val">8M</div><div class="lbl">bookings per month</div></div>
+          <div class="mockup-stat-item"><div class="val">165M</div><div class="lbl">guests served annually</div></div>
+          <div class="mockup-stat-item"><div class="val">$5B</div><div class="lbl">transactions processed annually</div></div>
+        </div>
+      </div>
+    </div></div>
+        <details class="accordion">
+      <summary><span class="summary-left">View all pages <span class="accordion-count">41</span></span><span class="chevron"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="#011840" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></summary>
+      <div class="accordion-body">        <div class="page-group">
+          <div class="page-group-label">Home </div>
+          <div class="page-list">
+          <div class="page-row">
+            <span class="page-row-title">All-in-One Venue Management Software for Attractions</span>
+            <span class="owner owner-ian">Ian</span>
+            <span class="page-row-url"><a href="https://www.roller.software" target="_blank">/</a></span>
+          </div>
+          </div>
+        </div>
+        <div class="page-group">
+          <div class="page-group-label">Single Pages </div>
+          <div class="page-list">
+          <div class="page-row">
+            <span class="page-row-title">Venue Management Software for Attractions & FECs</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/venue-management-software" target="_blank">/venue-management-software</a></span>
+          </div>
+          </div>
+        </div>
+        <div class="page-group">
+          <div class="page-group-label">Features Pages <span class="owner owner-pmm">PMM</span></div>
+          <div class="page-list">
+          <div class="page-row">
+            <span class="page-row-title">ROLLER Software Features</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/features/" target="_blank">/features/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">ROLLER iQ: Your new AI-powered assistant, built specifically for attractions.</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/features/ai-assistant" target="_blank">/features/ai-assistant</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">ROLLER API & Integrations</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/features/api-integrations/" target="_blank">/features/api-integrations/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Capacity Management Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/features/capacity-management" target="_blank">/features/capacity-management</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Cashless Payment System</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/features/cashless-wallets" target="_blank">/features/cashless-wallets</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Channel Management Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/features/channel-management" target="_blank">/features/channel-management</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Attractions CRM Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/features/crm-experience/" target="_blank">/features/crm-experience/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Digital Waiver Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/features/digital-waiver-software/" target="_blank">/features/digital-waiver-software/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Pricing Strategy Software for Attractions</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/features/discount-codes" target="_blank">/features/discount-codes</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Gift Card Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/features/giftcard/" target="_blank">/features/giftcard/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Guest Tab Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/features/guest-tabs" target="_blank">/features/guest-tabs</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Membership Management Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/features/membership-management-software/" target="_blank">/features/membership-management-software/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Mobile Check-In App</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/features/mobile-check-in" target="_blank">/features/mobile-check-in</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Mobile F&B Ordering System</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/features/mobile-food-and-beverage-ordering" target="_blank">/features/mobile-food-and-beverage-ordering</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Multi-Venue Management Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/features/multi-venue-management/" target="_blank">/features/multi-venue-management/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Online Ticketing System for Attractions</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/features/online-ticket-system/" target="_blank">/features/online-ticket-system/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Boost Revenue with Curated Product Bundles</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/features/packages" target="_blank">/features/packages</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Party Booking Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/features/party-booking-software/" target="_blank">/features/party-booking-software/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Payment Processing Software for Venues</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/features/payment-processing-software/" target="_blank">/features/payment-processing-software/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">POS Reporting Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/features/point-of-sale-reports/" target="_blank">/features/point-of-sale-reports/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">POS System for Attractions</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/features/pos/" target="_blank">/features/pos/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Pricing Strategy Software for Attractions</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/features/pricing-strategy" target="_blank">/features/pricing-strategy</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Printer Management Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/features/printer-management" target="_blank">/features/printer-management</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Ticketing Kiosk Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/features/self-service-ticketing-kiosk/" target="_blank">/features/self-service-ticketing-kiosk/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Staff Permissions Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/features/staff-permissions" target="_blank">/features/staff-permissions</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Inventory Control Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/features/stock-and-inventory-control" target="_blank">/features/stock-and-inventory-control</a></span>
+          </div>
+          </div>
+        </div>
+        <div class="page-group">
+          <div class="page-group-label">Industry Pages <span class="owner owner-pmm">PMM</span></div>
+          <div class="page-list">
+          <div class="page-row">
+            <span class="page-row-title">Playcenter POS System</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/playground-software/play-center-point-of-sale-system" target="_blank">/industries/playground-software/play-center-point-of-sale-system</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Trampoline Park POS Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/trampoline-parks-software/pos/" target="_blank">/industries/trampoline-parks-software/pos/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Trampoline Park Ticketing Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/trampoline-parks-software/ticketing-software/" target="_blank">/industries/trampoline-parks-software/ticketing-software/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Wake Park Ticketing Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/wake-parks-management-software/ticketing-system/" target="_blank">/industries/wake-parks-management-software/ticketing-system/</a></span>
+          </div>
+          </div>
+        </div>
+        <div class="page-group">
+          <div class="page-group-label">Partner Pages </div>
+          <div class="page-list">
+          <div class="page-row">
+            <span class="page-row-title">Alvarado Integration Partner</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/partners/alvarado" target="_blank">/partners/alvarado</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Amusement Connect Integration Partner - Enhance Your Arcade Management</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/partners/amusement-connect" target="_blank">/partners/amusement-connect</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Campaign Monitor Integration Partner</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/partners/campaign-monitor" target="_blank">/partners/campaign-monitor</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Fresh KDS Integration Partner - Streamline Food & Beverage Operations</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/partners/fresh-kds" target="_blank">/partners/fresh-kds</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Groupon Integration Partner</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/partners/groupon" target="_blank">/partners/groupon</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Intercard Integration Partner</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/partners/intercard" target="_blank">/partners/intercard</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Tanda Integration Partner - Streamline staffing with actual sales data</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/partners/tanda" target="_blank">/partners/tanda</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Workforce.com Integration Partner - Streamline staffing with actual sales data</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/partners/workforce.com" target="_blank">/partners/workforce.com</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Yellow Dog Integration Partner</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/partners/yellow-dog" target="_blank">/partners/yellow-dog</a></span>
+          </div>
+          </div>
+        </div></div>
+    </details>
+  </div>
+
+  <div class="component-card" data-type="global" id="card-global-logoset">
+    <div class="card-header"><div class="card-icon global">🏢</div><div class="card-meta">
+      <div class="card-title-row"><span class="card-title">Global Logo Set with "3,000+" Stat</span><span class="badge badge-global">Global</span><span class="card-component-name">global global-logo-set-global</span></div>
+      <p class="card-description">Pages with the <code>global-logo-set-global</code> CSS class. "Trusted by over 3,000 venues worldwide" tagline + customer logo strip. Update once — all 81 pages update.</p>
+      <div class="card-stats-row"><span class="stat-pill">81 pages</span><span class="stat-pill">Competitor · Features · Industry · Partner · DG LP</span><span class="owner owner-pmm">PMM</span><span class="owner owner-dg">DG</span></div>
+    </div></div>
+    <div class="preview-panel"><div class="preview-label">How it looks on the website</div><div class="preview-wrap">
+      <div class="mockup-logo-bar"><div class="tagline">Trusted by over 3,000 venues worldwide</div><div class="mockup-logo-row"><div class="mockup-logo">Skyline</div><div class="mockup-logo">GC Aqua Park</div><div class="mockup-logo">AdventurePark</div><div class="mockup-logo">Chipmunks</div><div class="mockup-logo">Ent. Park</div></div></div>
+      <div class="mockup-headline"><p>Helping a community of<br><span style="color:var(--blue-50);">3,000+ venues</span> thrive</p></div>
+    </div></div>
+        <details class="accordion">
+      <summary><span class="summary-left">View all pages <span class="accordion-count">81</span></span><span class="chevron"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="#011840" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></summary>
+      <div class="accordion-body">        <div class="page-group">
+          <div class="page-group-label">Single Pages </div>
+          <div class="page-list">
+          <div class="page-row">
+            <span class="page-row-title">ROLLER vs CenterEdge: Features, Pros, Pricing</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/centeredge-software-alternative/" target="_blank">/centeredge-software-alternative/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">ROLLER Pricing Plans</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/pricing/" target="_blank">/pricing/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Venue Management Software for Attractions & FECs</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/venue-management-software" target="_blank">/venue-management-software</a></span>
+          </div>
+          </div>
+        </div>
+        <div class="page-group">
+          <div class="page-group-label">Features Pages <span class="owner owner-pmm">PMM</span></div>
+          <div class="page-list">
+          <div class="page-row">
+            <span class="page-row-title">ROLLER iQ: Your new AI-powered assistant, built specifically for attractions.</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/features/ai-assistant" target="_blank">/features/ai-assistant</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">ROLLER API & Integrations</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/features/api-integrations/" target="_blank">/features/api-integrations/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Capacity Management Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/features/capacity-management" target="_blank">/features/capacity-management</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Cashless Payment System</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/features/cashless-wallets" target="_blank">/features/cashless-wallets</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Channel Management Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/features/channel-management" target="_blank">/features/channel-management</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Attractions CRM Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/features/crm-experience/" target="_blank">/features/crm-experience/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Digital Waiver Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/features/digital-waiver-software/" target="_blank">/features/digital-waiver-software/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Pricing Strategy Software for Attractions</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/features/discount-codes" target="_blank">/features/discount-codes</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Gift Card Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/features/giftcard/" target="_blank">/features/giftcard/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Guest Feedback Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/features/guest-feedback-software/" target="_blank">/features/guest-feedback-software/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Guest Tab Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/features/guest-tabs" target="_blank">/features/guest-tabs</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Membership Management Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/features/membership-management-software/" target="_blank">/features/membership-management-software/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Mobile Check-In App</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/features/mobile-check-in" target="_blank">/features/mobile-check-in</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Mobile F&B Ordering System</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/features/mobile-food-and-beverage-ordering" target="_blank">/features/mobile-food-and-beverage-ordering</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Multi-Venue Management Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/features/multi-venue-management/" target="_blank">/features/multi-venue-management/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Online Ticketing System for Attractions</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/features/online-ticket-system/" target="_blank">/features/online-ticket-system/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Boost Revenue with Curated Product Bundles</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/features/packages" target="_blank">/features/packages</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Party Booking Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/features/party-booking-software/" target="_blank">/features/party-booking-software/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Payment Processing Software for Venues</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/features/payment-processing-software/" target="_blank">/features/payment-processing-software/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">POS Reporting Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/features/point-of-sale-reports/" target="_blank">/features/point-of-sale-reports/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">POS System for Attractions</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/features/pos/" target="_blank">/features/pos/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Pricing Strategy Software for Attractions</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/features/pricing-strategy" target="_blank">/features/pricing-strategy</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Printer Management Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/features/printer-management" target="_blank">/features/printer-management</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Ticketing Kiosk Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/features/self-service-ticketing-kiosk/" target="_blank">/features/self-service-ticketing-kiosk/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Staff Permissions Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/features/staff-permissions" target="_blank">/features/staff-permissions</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Inventory Control Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/features/stock-and-inventory-control" target="_blank">/features/stock-and-inventory-control</a></span>
+          </div>
+          </div>
+        </div>
+        <div class="page-group">
+          <div class="page-group-label">Industry Pages <span class="owner owner-pmm">PMM</span></div>
+          <div class="page-list">
+          <div class="page-row">
+            <span class="page-row-title">Attraction Management Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/" target="_blank">/industries/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Cloud-Based Outdoor Adventure Park Management Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/adventure-parks-software" target="_blank">/industries/adventure-parks-software</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Amusement & Theme Park Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/amusement-and-theme-parks-software/" target="_blank">/industries/amusement-and-theme-parks-software/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Axe Throwing Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/axe-throwing-software" target="_blank">/industries/axe-throwing-software</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Bowling Alley Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/bowling-alley-management-software" target="_blank">/industries/bowling-alley-management-software</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Climbing Gym Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/climbing-gyms-software/" target="_blank">/industries/climbing-gyms-software/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Escape Room Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/escape-room-software" target="_blank">/industries/escape-room-software</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Family Entertainment Center Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/family-entertainment-center-software/" target="_blank">/industries/family-entertainment-center-software/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">FEC POS System</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/family-entertainment-center-software/pos-system" target="_blank">/industries/family-entertainment-center-software/pos-system</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">FEC Ticketing System</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/family-entertainment-center-software/ticketing-system/" target="_blank">/industries/family-entertainment-center-software/ticketing-system/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Go-Karting Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/go-karting" target="_blank">/industries/go-karting</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Ice Rink Management Software: Scheduling, Ticketing & POS</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/ice-skating" target="_blank">/industries/ice-skating</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Laser Tag Software for Modern Attractions</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/laser-tag-software" target="_blank">/industries/laser-tag-software</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Mini Golf Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/mini-golf" target="_blank">/industries/mini-golf</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Museum Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/museums-software/" target="_blank">/industries/museums-software/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Pickleball Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/pickleball-software" target="_blank">/industries/pickleball-software</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Playcenter Online Ticketing System</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/playcenter-software/online-ticketing-system/" target="_blank">/industries/playcenter-software/online-ticketing-system/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Indoor Playground & Soft Play Center Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/playground-software" target="_blank">/industries/playground-software</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Playcenter POS System</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/playground-software/play-center-point-of-sale-system" target="_blank">/industries/playground-software/play-center-point-of-sale-system</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Roller Skating Rink Management Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/skating-rink-software/" target="_blank">/industries/skating-rink-software/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Trampoline Park Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/trampoline-parks-software/" target="_blank">/industries/trampoline-parks-software/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Trampoline Park POS Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/trampoline-parks-software/pos/" target="_blank">/industries/trampoline-parks-software/pos/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Trampoline Park Ticketing Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/trampoline-parks-software/ticketing-software/" target="_blank">/industries/trampoline-parks-software/ticketing-software/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Adventure Park Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/visitor-attractions-software" target="_blank">/industries/visitor-attractions-software</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Aqua Park Management Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/wake-and-aqua-parks-management-software" target="_blank">/industries/wake-and-aqua-parks-management-software</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Wake Park Ticketing Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/wake-parks-management-software/ticketing-system/" target="_blank">/industries/wake-parks-management-software/ticketing-system/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Water Park Management Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/water-parks-management-software/" target="_blank">/industries/water-parks-management-software/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Zoo & Aquarium Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/zoos-management-software/" target="_blank">/industries/zoos-management-software/</a></span>
+          </div>
+          </div>
+        </div>
+        <div class="page-group">
+          <div class="page-group-label">Competitor Pages <span class="owner owner-pmm">PMM</span></div>
+          <div class="page-list">
+          <div class="page-row">
+            <span class="page-row-title">ROLLER vs Aluvii: Features, Pros, Pricing</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/competitor/aluvii" target="_blank">/competitor/aluvii</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Alternative for Attractions</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/competitor/bookeo" target="_blank">/competitor/bookeo</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">ROLLER vs Centaman: Features, Pros, Pricing</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/competitor/centaman" target="_blank">/competitor/centaman</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Checkfront Alternative: Venue Management Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/competitor/checkfront" target="_blank">/competitor/checkfront</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">ROLLER vs Clubspeed: Features, Pros, Pricing</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/competitor/clubspeed" target="_blank">/competitor/clubspeed</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">ROLLER vs FareHarbor: Features, Pros, Pricing</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/competitor/fareharbor" target="_blank">/competitor/fareharbor</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">ROLLER vs FuseMetrix: Features, Pros, Pricing</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/competitor/fusemetrix" target="_blank">/competitor/fusemetrix</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Lightspeed Alternative for Attractions</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/competitor/lightspeed" target="_blank">/competitor/lightspeed</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">ROLLER vs LilYPad: Features, Pros, Pricing</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/competitor/lilypad-pos" target="_blank">/competitor/lilypad-pos</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">ROLLER vs Party Center Software: Features, Pros, Pricing</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/competitor/party-center-software" target="_blank">/competitor/party-center-software</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">RaceFacer Alternative for Karting Attractions</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/competitor/racefacer" target="_blank">/competitor/racefacer</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">ROLLER vs Rock Gym Pro: Features, Pros, Pricing</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/competitor/rock-gym-pro" target="_blank">/competitor/rock-gym-pro</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">ROLLER vs RocketRez: Features, Pros, Pricing</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/competitor/rocketrez" target="_blank">/competitor/rocketrez</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Square Alternative for Attractions</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/competitor/square" target="_blank">/competitor/square</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Ticket Tailor Alternative for Attractions</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/competitor/tickettailor" target="_blank">/competitor/tickettailor</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">ROLLER vs Venue Sumo: Features, Pros, Pricing</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/competitor/venue-sumo" target="_blank">/competitor/venue-sumo</a></span>
+          </div>
+          </div>
+        </div>
+        <div class="page-group">
+          <div class="page-group-label">Solutions Pages <span class="owner owner-pmm">PMM</span></div>
+          <div class="page-list">
+          <div class="page-row">
+            <span class="page-row-title">Attractions Management Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/solutions/grow-your-business" target="_blank">/solutions/grow-your-business</a></span>
+          </div>
+          </div>
+        </div>
+        <div class="page-group">
+          <div class="page-group-label">Partner Pages </div>
+          <div class="page-list">
+          <div class="page-row">
+            <span class="page-row-title">Alvarado Integration Partner</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/partners/alvarado" target="_blank">/partners/alvarado</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Amusement Connect Integration Partner - Enhance Your Arcade Management</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/partners/amusement-connect" target="_blank">/partners/amusement-connect</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Fresh KDS Integration Partner - Streamline Food & Beverage Operations</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/partners/fresh-kds" target="_blank">/partners/fresh-kds</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Tanda Integration Partner - Streamline staffing with actual sales data</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/partners/tanda" target="_blank">/partners/tanda</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Workforce.com Integration Partner - Streamline staffing with actual sales data</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/partners/workforce.com" target="_blank">/partners/workforce.com</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Yellow Dog Integration Partner</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/partners/yellow-dog" target="_blank">/partners/yellow-dog</a></span>
+          </div>
+          </div>
+        </div>
+        <div class="page-group">
+          <div class="page-group-label">Products </div>
+          <div class="page-list">
+          <div class="page-row">
+            <span class="page-row-title">RFID Wristbands, Lanyards & Passes</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/products/rfid" target="_blank">/products/rfid</a></span>
+          </div>
+          </div>
+        </div></div>
+    </details>
+  </div>
+
+  <div class="component-card" data-type="nonglobal" id="card-nonglobal">
+    <div class="card-header"><div class="card-icon nonglobal">⚠️</div><div class="card-meta">
+      <div class="card-title-row"><span class="card-title">Non-Global Stats Widget</span><span class="badge badge-nonglobal">Non-Global</span><span class="card-component-name">stats-set-non-global · $4B · 100+</span></div>
+      <p class="card-description">Pages with the <code>stats-set-non-global</code> CSS class, or containing <strong>$4B / $4 Billion</strong> or <strong>100+</strong> in page text. Each stat change requires individual per-page edits.</p>
+      <div class="card-stats-row"><span class="stat-pill">14 pages</span><span class="stat-pill">Manual per-page edits required</span><span class="owner owner-pmm">PMM</span><span class="owner owner-dg">DG</span></div>
+    </div></div>
+    <div class="preview-panel"><div class="preview-label">How it looks — dark background stat blocks (hardcoded per-page)</div><div class="preview-wrap">
+      <div class="mockup-stats-dark">
+        <div class="stat-row"><div class="val">$4B</div><div class="lbl">transactions processed in the last 12 months</div></div>
+        <div class="stat-row"><div class="val">165 million</div><div class="lbl">guests served annually through the platform</div></div>
+        <div class="stat-row"><div class="val">8 million</div><div class="lbl">bookings created each and every month</div></div>
+        <div class="stat-row"><div class="val">30+</div><div class="lbl">countries trusted by venues around the globe</div></div>
+      </div>
+      <div class="mockup-stats-dark-h">
+        <div class="col"><div class="val">$5B</div><div class="lbl">transactions in the last 12 months</div></div>
+        <div class="col"><div class="val">165M</div><div class="lbl">guests served annually</div></div>
+        <div class="col"><div class="val">8M</div><div class="lbl">bookings every month</div></div>
+        <div class="col"><div class="val">30+</div><div class="lbl">countries worldwide</div></div>
+      </div>
+    </div></div>
+        <details class="accordion">
+      <summary><span class="summary-left">View all pages <span class="accordion-count">14</span></span><span class="chevron"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="#011840" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></summary>
+      <div class="accordion-body">        <div class="page-group">
+          <div class="page-group-label">Single Pages </div>
+          <div class="page-list">
+          <div class="page-row">
+            <span class="page-row-title">All-in-one Software for Attractions</span>
+            <span class="owner owner-dg">DG</span> <span class="page-note">CSS class</span>
+            <span class="page-row-url"><a href="https://www.roller.software/business-solutions" target="_blank">/business-solutions</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Let's Get Started</span>
+            <span class="owner owner-dg">DG</span> <span class="page-note">CSS class</span>
+            <span class="page-row-url"><a href="https://www.roller.software/get-started-ab" target="_blank">/get-started-ab</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Let's Get Started</span>
+            <span class="owner owner-dg">DG</span> <span class="page-note">CSS class</span>
+            <span class="page-row-url"><a href="https://www.roller.software/get-started/" target="_blank">/get-started/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">ROLLER Pricing Plans</span>
+            <span class="owner owner-pmm">PMM</span> <span class="page-note">CSS class</span>
+            <span class="page-row-url"><a href="https://www.roller.software/pricing/" target="_blank">/pricing/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Get help fast with ROLLER Support. We’re here for you 24/7.</span>
+             <span class="page-note">CSS class</span>
+            <span class="page-row-url"><a href="https://www.roller.software/support" target="_blank">/support</a></span>
+          </div>
+          </div>
+        </div>
+        <div class="page-group">
+          <div class="page-group-label">Features Pages <span class="owner owner-pmm">PMM</span></div>
+          <div class="page-list">
+          <div class="page-row">
+            <span class="page-row-title">ROLLER API & Integrations</span>
+            <span class="owner owner-pmm">PMM</span> <span class="page-note">100+ text</span>
+            <span class="page-row-url"><a href="https://www.roller.software/features/api-integrations/" target="_blank">/features/api-integrations/</a></span>
+          </div>
+          </div>
+        </div>
+        <div class="page-group">
+          <div class="page-group-label">Solutions Pages <span class="owner owner-pmm">PMM</span></div>
+          <div class="page-list">
+          <div class="page-row">
+            <span class="page-row-title">Enterprise Venue Management Software</span>
+            <span class="owner owner-pmm">PMM</span> <span class="page-note">CSS class</span> <span class="page-note">$4B text</span>
+            <span class="page-row-url"><a href="https://www.roller.software/solutions/enterprise" target="_blank">/solutions/enterprise</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Attractions Management Software</span>
+            <span class="owner owner-pmm">PMM</span> <span class="page-note">CSS class</span>
+            <span class="page-row-url"><a href="https://www.roller.software/solutions/grow-your-business" target="_blank">/solutions/grow-your-business</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">The Future of Multi-Venue Management</span>
+            <span class="owner owner-pmm">PMM</span> <span class="page-note">CSS class</span> <span class="page-note">$4B text</span> <span class="page-note">100+ text</span>
+            <span class="page-row-url"><a href="https://www.roller.software/solutions/multi-venue" target="_blank">/solutions/multi-venue</a></span>
+          </div>
+          </div>
+        </div>
+        <div class="page-group">
+          <div class="page-group-label">Partner Pages </div>
+          <div class="page-list">
+          <div class="page-row">
+            <span class="page-row-title">Become a ROLLER Integration Partner</span>
+            <span class="owner owner-pmm">PMM</span> <span class="page-note">CSS class</span>
+            <span class="page-row-url"><a href="https://www.roller.software/partners/integration" target="_blank">/partners/integration</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Become a ROLLER Service Partner</span>
+            <span class="owner owner-pmm">PMM</span> <span class="page-note">CSS class</span>
+            <span class="page-row-url"><a href="https://www.roller.software/partners/service" target="_blank">/partners/service</a></span>
+          </div>
+          </div>
+        </div>
+        <div class="page-group">
+          <div class="page-group-label">Campaigns & Gated Content <span class="owner owner-pmm">PMM</span></div>
+          <div class="page-list">
+          <div class="page-row">
+            <span class="page-row-title">2023 Roll-Up: Year in Review</span>
+            <span class="owner owner-pmm">PMM</span> <span class="page-note">CSS class</span>
+            <span class="page-row-url"><a href="https://www.roller.software/2023-rollup" target="_blank">/2023-rollup</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">2024 Roll-Up: Year in Review</span>
+            <span class="owner owner-pmm">PMM</span> <span class="page-note">CSS class</span>
+            <span class="page-row-url"><a href="https://www.roller.software/2024-rollup" target="_blank">/2024-rollup</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">2025 Roll-Up: Year in Review</span>
+            <span class="owner owner-pmm">PMM</span> <span class="page-note">CSS class</span>
+            <span class="page-row-url"><a href="https://www.roller.software/2025-roll-up-year-in-review" target="_blank">/2025-roll-up-year-in-review</a></span>
+          </div>
+          </div>
+        </div></div>
+    </details>
+  </div>
+
+  <div class="component-card" data-type="image" id="card-image">
+    <div class="card-header"><div class="card-icon image">🖼️</div><div class="card-meta">
+      <div class="card-title-row"><span class="card-title">Numbers Baked Into Images</span><span class="badge badge-image">In Images</span><span class="card-component-name">user_review_badges · rollup pages</span></div>
+      <p class="card-description">Pages with <code>user_review_badges</code> (G2/Capterra badge images with scores embedded) or year-in-review campaign pages with KPIs in static graphics. Cannot be changed via CMS — requires new design assets.</p>
+      <div class="card-stats-row"><span class="stat-pill">41 pages</span><span class="stat-pill">37 via review badges · 3 rollup campaigns · 1 trends report</span><span class="owner owner-pmm">PMM</span></div>
+    </div></div>
+    <div class="preview-panel"><div class="preview-label">How it looks — numbers embedded in image files, not editable in CMS</div><div class="preview-wrap">
+      <div class="mockup-stats-dark" style="min-width:240px;">
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4);margin-bottom:8px;">Baked into image</div>
+        <div class="stat-row"><div class="val">$4B</div><div class="lbl">text is part of the image file</div></div>
+        <div class="stat-row"><div class="val">165M</div><div class="lbl">updating requires new design asset</div></div>
+        <div class="stat-row"><div class="val">8M</div><div class="lbl">cannot edit in CMS</div></div>
+      </div>
+      <div style="background:#FEE2E2;border-radius:10px;padding:16px 18px;min-width:200px;flex-shrink:0;display:flex;flex-direction:column;justify-content:center;gap:8px;">
+        <div style="font-size:11px;font-weight:700;color:#991B1B;">⚠️ Update process</div>
+        <div style="font-size:12px;color:#7F1D1D;line-height:1.5;">1. Get source file from design team<br>2. Update numbers in Figma<br>3. Export new image asset<br>4. Upload to CMS and replace</div>
+      </div>
+    </div></div>
+        <details class="accordion">
+      <summary><span class="summary-left">View all pages <span class="accordion-count">41</span></span><span class="chevron"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="#011840" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></summary>
+      <div class="accordion-body">        <div class="page-group">
+          <div class="page-group-label">Home </div>
+          <div class="page-list">
+          <div class="page-row">
+            <span class="page-row-title">All-in-One Venue Management Software for Attractions</span>
+            <span class="owner owner-ian">Ian</span>
+            <span class="page-row-url"><a href="https://www.roller.software" target="_blank">/</a></span>
+          </div>
+          </div>
+        </div>
+        <div class="page-group">
+          <div class="page-group-label">Single Pages </div>
+          <div class="page-list">
+          <div class="page-row">
+            <span class="page-row-title">ROLLER vs CenterEdge: Features, Pros, Pricing</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/centeredge-software-alternative/" target="_blank">/centeredge-software-alternative/</a></span>
+          </div>
+          </div>
+        </div>
+        <div class="page-group">
+          <div class="page-group-label">Features Pages <span class="owner owner-pmm">PMM</span></div>
+          <div class="page-list">
+          <div class="page-row">
+            <span class="page-row-title">ROLLER Software Features</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/features/" target="_blank">/features/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Digital Waiver Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/features/digital-waiver-software/" target="_blank">/features/digital-waiver-software/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Gift Card Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/features/giftcard/" target="_blank">/features/giftcard/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Guest Feedback Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/features/guest-feedback-software/" target="_blank">/features/guest-feedback-software/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Membership Management Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/features/membership-management-software/" target="_blank">/features/membership-management-software/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Party Booking Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/features/party-booking-software/" target="_blank">/features/party-booking-software/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">POS System for Attractions</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/features/pos/" target="_blank">/features/pos/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Ticketing Kiosk Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/features/self-service-ticketing-kiosk/" target="_blank">/features/self-service-ticketing-kiosk/</a></span>
+          </div>
+          </div>
+        </div>
+        <div class="page-group">
+          <div class="page-group-label">Industry Pages <span class="owner owner-pmm">PMM</span></div>
+          <div class="page-list">
+          <div class="page-row">
+            <span class="page-row-title">Cloud-Based Outdoor Adventure Park Management Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/adventure-parks-software" target="_blank">/industries/adventure-parks-software</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Amusement & Theme Park Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/amusement-and-theme-parks-software/" target="_blank">/industries/amusement-and-theme-parks-software/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Axe Throwing Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/axe-throwing-software" target="_blank">/industries/axe-throwing-software</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Bowling Alley Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/bowling-alley-management-software" target="_blank">/industries/bowling-alley-management-software</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Climbing Gym Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/climbing-gyms-software/" target="_blank">/industries/climbing-gyms-software/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Escape Room Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/escape-room-software" target="_blank">/industries/escape-room-software</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Family Entertainment Center Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/family-entertainment-center-software/" target="_blank">/industries/family-entertainment-center-software/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Go-Karting Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/go-karting" target="_blank">/industries/go-karting</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Ice Rink Management Software: Scheduling, Ticketing & POS</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/ice-skating" target="_blank">/industries/ice-skating</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Laser Tag Software for Modern Attractions</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/laser-tag-software" target="_blank">/industries/laser-tag-software</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Mini Golf Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/mini-golf" target="_blank">/industries/mini-golf</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Museum Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/museums-software/" target="_blank">/industries/museums-software/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Pickleball Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/pickleball-software" target="_blank">/industries/pickleball-software</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Indoor Playground & Soft Play Center Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/playground-software" target="_blank">/industries/playground-software</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Roller Skating Rink Management Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/skating-rink-software/" target="_blank">/industries/skating-rink-software/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Trampoline Park Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/trampoline-parks-software/" target="_blank">/industries/trampoline-parks-software/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Adventure Park Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/visitor-attractions-software" target="_blank">/industries/visitor-attractions-software</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Aqua Park Management Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/wake-and-aqua-parks-management-software" target="_blank">/industries/wake-and-aqua-parks-management-software</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Water Park Management Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/water-parks-management-software/" target="_blank">/industries/water-parks-management-software/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Zoo & Aquarium Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/zoos-management-software/" target="_blank">/industries/zoos-management-software/</a></span>
+          </div>
+          </div>
+        </div>
+        <div class="page-group">
+          <div class="page-group-label">Competitor Pages <span class="owner owner-pmm">PMM</span></div>
+          <div class="page-list">
+          <div class="page-row">
+            <span class="page-row-title">ROLLER vs FareHarbor: Features, Pros, Pricing</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/competitor/fareharbor" target="_blank">/competitor/fareharbor</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">ROLLER vs LilYPad: Features, Pros, Pricing</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/competitor/lilypad-pos" target="_blank">/competitor/lilypad-pos</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">ROLLER vs Rock Gym Pro: Features, Pros, Pricing</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/competitor/rock-gym-pro" target="_blank">/competitor/rock-gym-pro</a></span>
+          </div>
+          </div>
+        </div>
+        <div class="page-group">
+          <div class="page-group-label">Solutions Pages <span class="owner owner-pmm">PMM</span></div>
+          <div class="page-list">
+          <div class="page-row">
+            <span class="page-row-title">Enterprise Venue Management Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/solutions/enterprise" target="_blank">/solutions/enterprise</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Attractions Management Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/solutions/grow-your-business" target="_blank">/solutions/grow-your-business</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">The Future of Multi-Venue Management</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/solutions/multi-venue" target="_blank">/solutions/multi-venue</a></span>
+          </div>
+          </div>
+        </div>
+        <div class="page-group">
+          <div class="page-group-label">Professional Services </div>
+          <div class="page-list">
+          <div class="page-row">
+            <span class="page-row-title">Professional Services</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/professional-services" target="_blank">/professional-services</a></span>
+          </div>
+          </div>
+        </div>
+        <div class="page-group">
+          <div class="page-group-label">Campaigns & Gated Content <span class="owner owner-pmm">PMM</span></div>
+          <div class="page-list">
+          <div class="page-row">
+            <span class="page-row-title">2023 Roll-Up: Year in Review</span>
+            <span class="owner owner-pmm">PMM</span> <span class="page-note-red">image asset</span>
+            <span class="page-row-url"><a href="https://www.roller.software/2023-rollup" target="_blank">/2023-rollup</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">2024 Roll-Up: Year in Review</span>
+            <span class="owner owner-pmm">PMM</span> <span class="page-note-red">image asset</span>
+            <span class="page-row-url"><a href="https://www.roller.software/2024-rollup" target="_blank">/2024-rollup</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">2025 Roll-Up: Year in Review</span>
+            <span class="owner owner-pmm">PMM</span> <span class="page-note-red">image asset</span>
+            <span class="page-row-url"><a href="https://www.roller.software/2025-roll-up-year-in-review" target="_blank">/2025-roll-up-year-in-review</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">What Roller Skating Guests Really Want: Skating Rink Insights</span>
+            <span class="owner owner-pmm">PMM</span> <span class="page-note-red">image asset</span>
+            <span class="page-row-url"><a href="https://www.roller.software/2025-roller-skating-trends-report" target="_blank">/2025-roller-skating-trends-report</a></span>
+          </div>
+          </div>
+        </div></div>
+    </details>
+  </div>
+
+  <div class="component-card" data-type="review" id="card-review-badges">
+    <div class="card-header"><div class="card-icon review">⭐</div><div class="card-meta">
+      <div class="card-title-row"><span class="card-title">User Review Badges Component</span><span class="badge badge-review">Review Badges</span><span class="badge-new">NEW</span><span class="card-component-name">user_review_badges</span></div>
+      <p class="card-description">Pages with one or more <code>user_review_badges</code> class elements. G2 and Capterra review badges where scores are embedded in badge image files — updating requires new image assets from the design team.</p>
+      <div class="card-stats-row"><span class="stat-pill">37 pages</span><span class="stat-pill">Industry · Features · Competitor · Solutions</span><span class="owner owner-pmm">PMM</span></div>
+    </div></div>
+    <div class="preview-panel"><div class="preview-label">How it looks — review rating badges with scores baked into images</div><div class="preview-wrap">
+      <div class="mockup-badge-row">
+        <div class="blabel">User review badges</div>
+        <div class="mockup-badges">
+          <div class="mockup-badge" style="background:#FF492C14;color:#FF492C;"><div class="score">4.9</div><div>/ 5 on G2</div></div>
+          <div class="mockup-badge" style="background:#FF690014;color:#FF6900;"><div class="score">4.8</div><div>Capterra</div></div>
+          <div class="mockup-badge" style="background:#0960F614;color:#0960F6;"><div class="score">Leader</div><div>G2 Badge</div></div>
+          <div class="mockup-badge" style="background:#16A34A14;color:#16A34A;"><div class="score">Top</div><div>Software</div></div>
+        </div>
+      </div>
+      <div style="background:#F3E8FF;border-radius:10px;padding:16px 18px;min-width:200px;flex-shrink:0;display:flex;flex-direction:column;justify-content:center;gap:8px;">
+        <div style="font-size:11px;font-weight:700;color:#7C3AED;">ℹ️ Scores in images</div>
+        <div style="font-size:12px;color:#4C1D95;line-height:1.5;">Ratings are baked into badge image files. Changing a score requires uploading a new badge image, not editing CMS text.</div>
+      </div>
+    </div></div>
+        <details class="accordion">
+      <summary><span class="summary-left">View all pages <span class="accordion-count">37</span></span><span class="chevron"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="#011840" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></summary>
+      <div class="accordion-body">        <div class="page-group">
+          <div class="page-group-label">Home </div>
+          <div class="page-list">
+          <div class="page-row">
+            <span class="page-row-title">All-in-One Venue Management Software for Attractions</span>
+            <span class="owner owner-ian">Ian</span>
+            <span class="page-row-url"><a href="https://www.roller.software" target="_blank">/</a></span>
+          </div>
+          </div>
+        </div>
+        <div class="page-group">
+          <div class="page-group-label">Single Pages </div>
+          <div class="page-list">
+          <div class="page-row">
+            <span class="page-row-title">ROLLER vs CenterEdge: Features, Pros, Pricing</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/centeredge-software-alternative/" target="_blank">/centeredge-software-alternative/</a></span>
+          </div>
+          </div>
+        </div>
+        <div class="page-group">
+          <div class="page-group-label">Features Pages <span class="owner owner-pmm">PMM</span></div>
+          <div class="page-list">
+          <div class="page-row">
+            <span class="page-row-title">ROLLER Software Features</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/features/" target="_blank">/features/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Digital Waiver Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/features/digital-waiver-software/" target="_blank">/features/digital-waiver-software/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Gift Card Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/features/giftcard/" target="_blank">/features/giftcard/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Guest Feedback Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/features/guest-feedback-software/" target="_blank">/features/guest-feedback-software/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Membership Management Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/features/membership-management-software/" target="_blank">/features/membership-management-software/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Party Booking Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/features/party-booking-software/" target="_blank">/features/party-booking-software/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">POS System for Attractions</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/features/pos/" target="_blank">/features/pos/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Ticketing Kiosk Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/features/self-service-ticketing-kiosk/" target="_blank">/features/self-service-ticketing-kiosk/</a></span>
+          </div>
+          </div>
+        </div>
+        <div class="page-group">
+          <div class="page-group-label">Industry Pages <span class="owner owner-pmm">PMM</span></div>
+          <div class="page-list">
+          <div class="page-row">
+            <span class="page-row-title">Cloud-Based Outdoor Adventure Park Management Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/adventure-parks-software" target="_blank">/industries/adventure-parks-software</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Amusement & Theme Park Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/amusement-and-theme-parks-software/" target="_blank">/industries/amusement-and-theme-parks-software/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Axe Throwing Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/axe-throwing-software" target="_blank">/industries/axe-throwing-software</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Bowling Alley Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/bowling-alley-management-software" target="_blank">/industries/bowling-alley-management-software</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Climbing Gym Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/climbing-gyms-software/" target="_blank">/industries/climbing-gyms-software/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Escape Room Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/escape-room-software" target="_blank">/industries/escape-room-software</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Family Entertainment Center Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/family-entertainment-center-software/" target="_blank">/industries/family-entertainment-center-software/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Go-Karting Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/go-karting" target="_blank">/industries/go-karting</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Ice Rink Management Software: Scheduling, Ticketing & POS</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/ice-skating" target="_blank">/industries/ice-skating</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Laser Tag Software for Modern Attractions</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/laser-tag-software" target="_blank">/industries/laser-tag-software</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Mini Golf Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/mini-golf" target="_blank">/industries/mini-golf</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Museum Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/museums-software/" target="_blank">/industries/museums-software/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Pickleball Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/pickleball-software" target="_blank">/industries/pickleball-software</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Indoor Playground & Soft Play Center Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/playground-software" target="_blank">/industries/playground-software</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Roller Skating Rink Management Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/skating-rink-software/" target="_blank">/industries/skating-rink-software/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Trampoline Park Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/trampoline-parks-software/" target="_blank">/industries/trampoline-parks-software/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Adventure Park Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/visitor-attractions-software" target="_blank">/industries/visitor-attractions-software</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Aqua Park Management Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/wake-and-aqua-parks-management-software" target="_blank">/industries/wake-and-aqua-parks-management-software</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Water Park Management Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/water-parks-management-software/" target="_blank">/industries/water-parks-management-software/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Zoo & Aquarium Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/zoos-management-software/" target="_blank">/industries/zoos-management-software/</a></span>
+          </div>
+          </div>
+        </div>
+        <div class="page-group">
+          <div class="page-group-label">Competitor Pages <span class="owner owner-pmm">PMM</span></div>
+          <div class="page-list">
+          <div class="page-row">
+            <span class="page-row-title">ROLLER vs FareHarbor: Features, Pros, Pricing</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/competitor/fareharbor" target="_blank">/competitor/fareharbor</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">ROLLER vs LilYPad: Features, Pros, Pricing</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/competitor/lilypad-pos" target="_blank">/competitor/lilypad-pos</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">ROLLER vs Rock Gym Pro: Features, Pros, Pricing</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/competitor/rock-gym-pro" target="_blank">/competitor/rock-gym-pro</a></span>
+          </div>
+          </div>
+        </div>
+        <div class="page-group">
+          <div class="page-group-label">Solutions Pages <span class="owner owner-pmm">PMM</span></div>
+          <div class="page-list">
+          <div class="page-row">
+            <span class="page-row-title">Enterprise Venue Management Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/solutions/enterprise" target="_blank">/solutions/enterprise</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Attractions Management Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/solutions/grow-your-business" target="_blank">/solutions/grow-your-business</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">The Future of Multi-Venue Management</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/solutions/multi-venue" target="_blank">/solutions/multi-venue</a></span>
+          </div>
+          </div>
+        </div>
+        <div class="page-group">
+          <div class="page-group-label">Professional Services </div>
+          <div class="page-list">
+          <div class="page-row">
+            <span class="page-row-title">Professional Services</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/professional-services" target="_blank">/professional-services</a></span>
+          </div>
+          </div>
+        </div></div>
+    </details>
+  </div>
+
+  <div class="component-card" data-type="carousel" id="card-carousel">
+    <div class="card-header"><div class="card-icon carousel">🔄</div><div class="card-meta">
+      <div class="card-title-row"><span class="card-title">Dark Background Logo Set Carousel</span><span class="badge badge-carousel">Carousel</span><span class="card-component-name">global global-logo-set logo-set-module</span></div>
+      <p class="card-description">Pages where <code>global global-logo-set logo-set-module</code> was detected without the <code>-global</code> suffix. Animated dark-background customer logo carousel — per-page configuration.</p>
+      <div class="card-stats-row"><span class="stat-pill">5 pages</span><span class="stat-pill">Per-page configuration</span><span class="owner owner-pmm">PMM</span><span class="owner owner-ian">Ian</span></div>
+    </div></div>
+    <div class="preview-panel"><div class="preview-label">How it looks — dark background animated logo carousel</div><div class="preview-wrap">
+      <div class="mockup-logo-bar-dark" style="min-width:380px;"><div class="tagline">Trusted by over 3,000 venues worldwide</div><div class="mockup-logo-row"><div class="mockup-logo-dark">Skyline</div><div class="mockup-logo-dark">GC Aqua Park</div><div class="mockup-logo-dark">AdventurePark</div><div class="mockup-logo-dark">Chipmunks</div><div class="mockup-logo-dark">Ent. Park</div></div></div>
+    </div></div>
+        <details class="accordion">
+      <summary><span class="summary-left">View all pages <span class="accordion-count">5</span></span><span class="chevron"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="#011840" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></summary>
+      <div class="accordion-body">        <div class="page-group">
+          <div class="page-group-label">Home </div>
+          <div class="page-list">
+          <div class="page-row">
+            <span class="page-row-title">All-in-One Venue Management Software for Attractions</span>
+            <span class="owner owner-ian">Ian</span>
+            <span class="page-row-url"><a href="https://www.roller.software" target="_blank">/</a></span>
+          </div>
+          </div>
+        </div>
+        <div class="page-group">
+          <div class="page-group-label">Solutions Pages <span class="owner owner-pmm">PMM</span></div>
+          <div class="page-list">
+          <div class="page-row">
+            <span class="page-row-title">Enterprise Venue Management Software</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/solutions/enterprise" target="_blank">/solutions/enterprise</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">The Future of Multi-Venue Management</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/solutions/multi-venue" target="_blank">/solutions/multi-venue</a></span>
+          </div>
+          </div>
+        </div>
+        <div class="page-group">
+          <div class="page-group-label">Partner Pages </div>
+          <div class="page-list">
+          <div class="page-row">
+            <span class="page-row-title">Groupon Integration Partner</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/partners/groupon" target="_blank">/partners/groupon</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Intercard Integration Partner</span>
+            <span class="owner owner-pmm">PMM</span>
+            <span class="page-row-url"><a href="https://www.roller.software/partners/intercard" target="_blank">/partners/intercard</a></span>
+          </div>
+          </div>
+        </div></div>
+    </details>
+  </div>
+
+  <div class="component-card" data-type="standalone" id="card-standalone">
+    <div class="card-header"><div class="card-icon standalone">🔢</div><div class="card-meta">
+      <div class="card-title-row"><span class="card-title">Standalone Text Stat</span><span class="badge badge-standalone">Standalone</span><span class="badge-new">NEW</span><span class="card-component-name">plain text · no class wrapper</span></div>
+      <p class="card-description">Pages where <strong>3,000</strong>, <strong>2,600</strong>, or <strong>1,507</strong> appear as a direct text node in a <code>&lt;p&gt;</code>, <code>&lt;h2&gt;</code>, <code>&lt;h3&gt;</code>, or <code>&lt;span&gt;</code> with no ancestor using any known component CSS class. Must be edited individually in the CMS.</p>
+      <div class="card-stats-row"><span class="stat-pill">8 pages</span><span class="stat-pill">Hardcoded in page copy — no component wrapper</span><span class="owner owner-pmm">PMM</span><span class="owner owner-ian">Ian</span></div>
+    </div></div>
+    <div class="preview-panel"><div class="preview-label">Real examples found — number appears in prose, outside any component</div><div class="preview-wrap">
+      <div class="mockup-standalone">
+        <div class="slabel">Real examples found on site</div>
+        <div class="example">&lt;h3&gt; "The platform powering <strong>3,000+</strong> thriving attractions" — Home</div>
+        <div class="example">&lt;p&gt; "Customers: <strong>3,000+</strong> venues worldwide" — /company-facts</div>
+        <div class="example">&lt;h2&gt; "Trusted by over <strong>3,000</strong> venues worldwide" — /get-started-ab</div>
+        <div class="example">&lt;span&gt; "<strong>3,000</strong>" standalone number — /pricing/</div>
+      </div>
+      <div style="background:#FFE4E6;border-radius:10px;padding:16px 18px;min-width:200px;flex-shrink:0;display:flex;flex-direction:column;justify-content:center;gap:8px;">
+        <div style="font-size:11px;font-weight:700;color:#9F1239;">⚠️ Not in any component</div>
+        <div style="font-size:12px;color:#881337;line-height:1.5;">These numbers live directly in page copy. Each must be found and edited manually in the CMS if the stat changes.</div>
+      </div>
+    </div></div>
+        <details class="accordion">
+      <summary><span class="summary-left">View all pages <span class="accordion-count">8</span></span><span class="chevron"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="#011840" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></summary>
+      <div class="accordion-body">        <div class="page-group">
+          <div class="page-group-label">Home </div>
+          <div class="page-list">
+          <div class="page-row">
+            <span class="page-row-title">All-in-One Venue Management Software for Attractions</span>
+            <span class="owner owner-ian">Ian</span> <span class="page-note">3,000 in text</span>
+            <span class="page-row-url"><a href="https://www.roller.software" target="_blank">/</a></span>
+          </div>
+          </div>
+        </div>
+        <div class="page-group">
+          <div class="page-group-label">Single Pages </div>
+          <div class="page-list">
+          <div class="page-row">
+            <span class="page-row-title">All-in-one Software for Attractions</span>
+            <span class="owner owner-dg">DG</span> <span class="page-note">3,000 in text</span>
+            <span class="page-row-url"><a href="https://www.roller.software/business-solutions" target="_blank">/business-solutions</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Let's Get Started</span>
+            <span class="owner owner-dg">DG</span> <span class="page-note">3,000 in text</span>
+            <span class="page-row-url"><a href="https://www.roller.software/get-started-ab" target="_blank">/get-started-ab</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Let's Get Started</span>
+            <span class="owner owner-dg">DG</span> <span class="page-note">3,000 in text</span>
+            <span class="page-row-url"><a href="https://www.roller.software/get-started/" target="_blank">/get-started/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">ROLLER Pricing Plans</span>
+            <span class="owner owner-pmm">PMM</span> <span class="page-note">3,000 in text</span>
+            <span class="page-row-url"><a href="https://www.roller.software/pricing/" target="_blank">/pricing/</a></span>
+          </div>
+          </div>
+        </div>
+        <div class="page-group">
+          <div class="page-group-label">Industry Pages <span class="owner owner-pmm">PMM</span></div>
+          <div class="page-list">
+          <div class="page-row">
+            <span class="page-row-title">Attraction Management Software</span>
+            <span class="owner owner-pmm">PMM</span> <span class="page-note">3,000 in text</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/" target="_blank">/industries/</a></span>
+          </div>
+          <div class="page-row">
+            <span class="page-row-title">Laser Tag Software for Modern Attractions</span>
+            <span class="owner owner-pmm">PMM</span> <span class="page-note">3,000 in text</span>
+            <span class="page-row-url"><a href="https://www.roller.software/industries/laser-tag-software" target="_blank">/industries/laser-tag-software</a></span>
+          </div>
+          </div>
+        </div>
+        <div class="page-group">
+          <div class="page-group-label">Company Pages </div>
+          <div class="page-list">
+          <div class="page-row">
+            <span class="page-row-title">ROLLER Company Facts</span>
+             <span class="page-note">3,000 in text</span>
+            <span class="page-row-url"><a href="https://www.roller.software/company-facts" target="_blank">/company-facts</a></span>
+          </div>
+          </div>
+        </div></div>
+    </details>
+  </div>
+
+</div>
+<script>
+  const CHART_DATA=[
+    {label:"Global Logo Set (3,000+)",count:81,color:"#0960F6"},
+    {label:"User Review Badges",      count:37, color:"#7C3AED"},
+    {label:"Numbers in Images",       count:41,   color:"#DC2626"},
+    {label:"Global Stats Widget",     count:41,  color:"#16A34A"},
+    {label:"Non-Global Stats Widget", count:14,color:"#D97706"},
+    {label:"Dark Logo Carousel",      count:5, color:"#033180"},
+    {label:"Standalone Text Stat",    count:8,color:"#E11D48"},
+  ];
+  const MAX=Math.max(...CHART_DATA.map(d=>d.count));
+  const container=document.getElementById('chartBars');
+  CHART_DATA.forEach(d=>{
+    const pct=(d.count/MAX*100).toFixed(1);
+    const inside=d.count>MAX*0.15;
+    const row=document.createElement('div');row.className='chart-row';
+    row.innerHTML=`<div class="chart-label">${d.label}</div><div class="chart-bar-wrap"><div class="chart-bar" style="width:${pct}%;background:${d.color};min-width:${d.count>0?'6px':'0'};"></div><span class="chart-bar-val" style="left:${inside?'10px':'calc('+pct+'% + 8px)'};color:${inside?'#fff':'#334155'}">${d.count}</span></div>`;
+    container.appendChild(row);
+  });
+  function filterCards(t,b){document.querySelectorAll('.filter-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.querySelectorAll('.component-card').forEach(c=>c.classList.toggle('hidden',t!=='all'&&c.dataset.type!==t));}
+  function searchPages(){const q=document.getElementById('searchInput').value.toLowerCase().trim();document.querySelectorAll('.component-card').forEach(card=>{if(!q){card.classList.remove('hidden');return;}const m=card.textContent.toLowerCase().includes(q);card.classList.toggle('hidden',!m);if(m&&q.length>1){const d=card.querySelector('details.accordion');if(d)d.open=true;}});}
+</script>
+</body>
+</html>
