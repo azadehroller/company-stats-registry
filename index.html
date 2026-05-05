@@ -410,6 +410,91 @@
     .topbar { padding: 14px 20px; }
     .page-row-url { display: none; }
   }
+
+  /* ─── CHART ─────────────────────────────────── */
+  .chart-section {
+    background: var(--white);
+    border: 1.5px solid var(--gray-200);
+    border-radius: 16px;
+    padding: 28px 32px 24px;
+    margin-bottom: 32px;
+  }
+  .chart-title { font-size: 15px; font-weight: 700; color: var(--blue-10); margin-bottom: 4px; }
+  .chart-sub   { font-size: 12px; color: var(--gray-500); margin-bottom: 20px; }
+
+  /* ─── EXTRA BADGES / CARD ICONS ─────────────── */
+  .card-icon.review    { background: #F3E8FF; }
+  .card-icon.standalone{ background: #FFE4E6; }
+  .badge-review    { background: #F3E8FF; color: #7C3AED; }
+  .badge-standalone{ background: #FFE4E6; color: #9F1239; }
+  .badge-new { background: #FEF9C3; color: #92400E; font-size: 9px; padding: 2px 6px; border-radius: 4px; font-weight: 700; }
+  .page-note-red { font-size: 11px; color: #991B1B; background: #FEE2E2; padding: 2px 7px; border-radius: 4px; white-space: nowrap; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 6px; vertical-align: middle; }
+
+  /* ─── DETAILS / SUMMARY (native accordion) ──── */
+  details.accordion { border-top: 1.5px solid var(--gray-200); }
+  details.accordion > summary {
+    list-style: none; cursor: pointer;
+    padding: 14px 28px;
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 13px; font-weight: 600; color: var(--blue-10);
+    transition: background .15s; user-select: none;
+  }
+  details.accordion > summary::-webkit-details-marker { display: none; }
+  details.accordion > summary::marker { display: none; }
+  details.accordion > summary:hover { background: var(--gray-50); }
+  details.accordion[open] > summary .chevron {
+    background: var(--blue-95); transform: rotate(180deg);
+  }
+  .summary-left { display: flex; align-items: center; gap: 8px; }
+  .chevron {
+    width: 20px; height: 20px; border-radius: 50%;
+    background: var(--gray-100);
+    display: flex; align-items: center; justify-content: center;
+    transition: background .15s, transform .25s; flex-shrink: 0;
+  }
+  details.accordion > summary:hover .chevron { background: var(--blue-95); }
+  .accordion-body { padding: 4px 28px 20px; }
+
+  /* ─── PREVIEW PANELS ─────────────────────────── */
+  .preview-panel { margin: 0 28px 0; border-radius: 10px; overflow: hidden; border: 1px solid var(--gray-200); }
+  .preview-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--gray-500); padding: 8px 16px 0; background: var(--gray-50); }
+  .preview-wrap  { background: var(--gray-50); padding: 12px 16px 16px; display: flex; gap: 12px; overflow-x: auto; }
+  .mockup-stats-light { background: #EBF2FE; border-radius: 10px; padding: 20px 24px; display: flex; gap: 24px; align-items: flex-start; min-width: 480px; flex-shrink: 0; }
+  .mockup-stats-light .left { flex: 0 0 180px; }
+  .mockup-stats-light .left .eyebrow { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: #E05A2B; margin-bottom: 6px; }
+  .mockup-stats-light .left .heading { font-size: 16px; font-weight: 700; color: var(--blue-10); line-height: 1.3; }
+  .mockup-stats-light .grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px 20px; flex: 1; }
+  .mockup-stat-item .val { font-size: 20px; font-weight: 700; color: var(--blue-50); line-height: 1; }
+  .mockup-stat-item .lbl { font-size: 10px; color: var(--gray-500); margin-top: 2px; }
+  .mockup-stats-dark { background: var(--blue-10); border-radius: 10px; padding: 20px 24px; min-width: 280px; flex-shrink: 0; }
+  .mockup-stats-dark .stat-row { padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,.1); }
+  .mockup-stats-dark .stat-row:last-child { border-bottom: none; }
+  .mockup-stats-dark .val { font-size: 20px; font-weight: 700; color: var(--blue-50); }
+  .mockup-stats-dark .lbl { font-size: 10px; color: var(--blue-90); margin-top: 2px; }
+  .mockup-stats-dark-h { background: var(--blue-10); border-radius: 10px; padding: 20px 24px; display: flex; min-width: 400px; flex-shrink: 0; }
+  .mockup-stats-dark-h .col { flex: 1; text-align: center; padding: 8px 10px; border-right: 1px solid rgba(255,255,255,.1); }
+  .mockup-stats-dark-h .col:last-child { border-right: none; }
+  .mockup-stats-dark-h .val { font-size: 18px; font-weight: 700; color: var(--blue-50); }
+  .mockup-stats-dark-h .lbl { font-size: 9px; color: var(--blue-90); margin-top: 4px; line-height: 1.3; }
+  .mockup-logo-bar { background: var(--white); border-radius: 10px; padding: 16px 20px; min-width: 340px; flex-shrink: 0; }
+  .mockup-logo-bar .tagline { font-size: 11px; font-weight: 700; color: var(--blue-10); margin-bottom: 14px; }
+  .mockup-logo-row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+  .mockup-logo { background: var(--gray-100); border: 1px solid var(--gray-200); border-radius: 6px; height: 32px; padding: 0 12px; display: flex; align-items: center; font-size: 10px; font-weight: 600; color: var(--gray-500); white-space: nowrap; }
+  .mockup-logo-bar-dark { background: var(--blue-10); border-radius: 10px; padding: 16px 20px; min-width: 340px; flex-shrink: 0; }
+  .mockup-logo-bar-dark .tagline { font-size: 11px; font-weight: 700; color: var(--white); margin-bottom: 14px; }
+  .mockup-logo-dark { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.12); border-radius: 6px; height: 32px; padding: 0 12px; display: flex; align-items: center; font-size: 10px; font-weight: 600; color: rgba(255,255,255,.5); white-space: nowrap; }
+  .mockup-headline { background: var(--white); border-radius: 10px; padding: 24px 28px; min-width: 240px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; text-align: center; }
+  .mockup-headline p { font-size: 16px; font-weight: 700; color: var(--blue-10); line-height: 1.35; }
+  .mockup-badge-row { background: var(--white); border-radius: 10px; padding: 16px 20px; min-width: 300px; flex-shrink: 0; }
+  .mockup-badge-row .blabel { font-size: 10px; font-weight: 700; text-transform: uppercase; color: var(--gray-500); margin-bottom: 10px; letter-spacing: .06em; }
+  .mockup-badges { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+  .mockup-badge { border-radius: 8px; padding: 8px 12px; text-align: center; font-size: 10px; font-weight: 700; display: flex; flex-direction: column; align-items: center; gap: 3px; min-width: 70px; }
+  .mockup-badge .score { font-size: 18px; font-weight: 700; }
+  .mockup-standalone { background: var(--white); border-radius: 10px; padding: 16px 20px; min-width: 300px; flex-shrink: 0; }
+  .mockup-standalone .slabel { font-size: 10px; font-weight: 700; text-transform: uppercase; color: var(--gray-500); margin-bottom: 10px; letter-spacing: .06em; }
+  .mockup-standalone .example { padding: 8px 12px; border-radius: 6px; background: var(--gray-50); border-left: 3px solid #E11D48; font-size: 12px; color: var(--blue-10); margin-bottom: 6px; line-height: 1.4; }
+
 </style>
 </head>
 <body>
@@ -434,7 +519,10 @@
   <div class="chart-section">
     <div class="chart-title">Component Usage Across the Site</div>
     <div class="chart-sub">Pages per category — one page can appear in multiple categories · 148 content pages audited</div>
-    <div class="chart-bars" id="chartBars"></div>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 886 294" 
+     style="width:100%;height:auto;display:block;max-height:320px;">
+  <rect x="230" y="24" width="600" height="22" rx="5" fill="#F1F5F9"/><rect id="bar0" x="230" y="24" width="0" height="22" rx="5" fill="#0960F6"><animate attributeName="width" from="0" to="600" dur="0.7s" begin="0.0s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1"/></rect><text x="838" y="40" font-family="&quot;Proxima Nova&quot;, Arial, sans-serif" font-size="12" font-weight="700" fill="#0960F6">81</text><text x="218" y="40" font-family="&quot;Proxima Nova&quot;, Arial, sans-serif" font-size="12" font-weight="600" fill="#011840" text-anchor="end">Global Logo Set (3,000+)</text><rect x="230" y="62" width="600" height="22" rx="5" fill="#F1F5F9"/><rect id="bar1" x="230" y="62" width="0" height="22" rx="5" fill="#7C3AED"><animate attributeName="width" from="0" to="274" dur="0.7s" begin="0.08s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1"/></rect><text x="512" y="78" font-family="&quot;Proxima Nova&quot;, Arial, sans-serif" font-size="12" font-weight="700" fill="#7C3AED">37</text><text x="218" y="78" font-family="&quot;Proxima Nova&quot;, Arial, sans-serif" font-size="12" font-weight="600" fill="#011840" text-anchor="end">User Review Badges</text><rect x="230" y="100" width="600" height="22" rx="5" fill="#F1F5F9"/><rect id="bar2" x="230" y="100" width="0" height="22" rx="5" fill="#DC2626"><animate attributeName="width" from="0" to="303" dur="0.7s" begin="0.16s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1"/></rect><text x="541" y="116" font-family="&quot;Proxima Nova&quot;, Arial, sans-serif" font-size="12" font-weight="700" fill="#DC2626">41</text><text x="218" y="116" font-family="&quot;Proxima Nova&quot;, Arial, sans-serif" font-size="12" font-weight="600" fill="#011840" text-anchor="end">Numbers in Images</text><rect x="230" y="138" width="600" height="22" rx="5" fill="#F1F5F9"/><rect id="bar3" x="230" y="138" width="0" height="22" rx="5" fill="#16A34A"><animate attributeName="width" from="0" to="303" dur="0.7s" begin="0.24s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1"/></rect><text x="541" y="154" font-family="&quot;Proxima Nova&quot;, Arial, sans-serif" font-size="12" font-weight="700" fill="#16A34A">41</text><text x="218" y="154" font-family="&quot;Proxima Nova&quot;, Arial, sans-serif" font-size="12" font-weight="600" fill="#011840" text-anchor="end">Global Stats Widget</text><rect x="230" y="176" width="600" height="22" rx="5" fill="#F1F5F9"/><rect id="bar4" x="230" y="176" width="0" height="22" rx="5" fill="#D97706"><animate attributeName="width" from="0" to="103" dur="0.7s" begin="0.32s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1"/></rect><text x="341" y="192" font-family="&quot;Proxima Nova&quot;, Arial, sans-serif" font-size="12" font-weight="700" fill="#D97706">14</text><text x="218" y="192" font-family="&quot;Proxima Nova&quot;, Arial, sans-serif" font-size="12" font-weight="600" fill="#011840" text-anchor="end">Non-Global Stats Widget</text><rect x="230" y="214" width="600" height="22" rx="5" fill="#F1F5F9"/><rect id="bar5" x="230" y="214" width="0" height="22" rx="5" fill="#033180"><animate attributeName="width" from="0" to="37" dur="0.7s" begin="0.4s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1"/></rect><text x="275" y="230" font-family="&quot;Proxima Nova&quot;, Arial, sans-serif" font-size="12" font-weight="700" fill="#033180">5</text><text x="218" y="230" font-family="&quot;Proxima Nova&quot;, Arial, sans-serif" font-size="12" font-weight="600" fill="#011840" text-anchor="end">Dark Logo Carousel</text><rect x="230" y="252" width="600" height="22" rx="5" fill="#F1F5F9"/><rect id="bar6" x="230" y="252" width="0" height="22" rx="5" fill="#E11D48"><animate attributeName="width" from="0" to="59" dur="0.7s" begin="0.48s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1"/></rect><text x="297" y="268" font-family="&quot;Proxima Nova&quot;, Arial, sans-serif" font-size="12" font-weight="700" fill="#E11D48">8</text><text x="218" y="268" font-family="&quot;Proxima Nova&quot;, Arial, sans-serif" font-size="12" font-weight="600" fill="#011840" text-anchor="end">Standalone Text Stat</text>
+</svg>
   </div>
   <div class="filter-bar">
     <button class="filter-btn active" onclick="filterCards('all',this)">All</button>
@@ -1938,27 +2026,29 @@
   </div>
 
 </div>
+
+
 <script>
-  const CHART_DATA=[
-    {label:"Global Logo Set (3,000+)",count:81,color:"#0960F6"},
-    {label:"User Review Badges",      count:37, color:"#7C3AED"},
-    {label:"Numbers in Images",       count:41,   color:"#DC2626"},
-    {label:"Global Stats Widget",     count:41,  color:"#16A34A"},
-    {label:"Non-Global Stats Widget", count:14,color:"#D97706"},
-    {label:"Dark Logo Carousel",      count:5, color:"#033180"},
-    {label:"Standalone Text Stat",    count:8,color:"#E11D48"},
-  ];
-  const MAX=Math.max(...CHART_DATA.map(d=>d.count));
-  const container=document.getElementById('chartBars');
-  CHART_DATA.forEach(d=>{
-    const pct=(d.count/MAX*100).toFixed(1);
-    const inside=d.count>MAX*0.15;
-    const row=document.createElement('div');row.className='chart-row';
-    row.innerHTML=`<div class="chart-label">${d.label}</div><div class="chart-bar-wrap"><div class="chart-bar" style="width:${pct}%;background:${d.color};min-width:${d.count>0?'6px':'0'};"></div><span class="chart-bar-val" style="left:${inside?'10px':'calc('+pct+'% + 8px)'};color:${inside?'#fff':'#334155'}">${d.count}</span></div>`;
-    container.appendChild(row);
-  });
-  function filterCards(t,b){document.querySelectorAll('.filter-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.querySelectorAll('.component-card').forEach(c=>c.classList.toggle('hidden',t!=='all'&&c.dataset.type!==t));}
-  function searchPages(){const q=document.getElementById('searchInput').value.toLowerCase().trim();document.querySelectorAll('.component-card').forEach(card=>{if(!q){card.classList.remove('hidden');return;}const m=card.textContent.toLowerCase().includes(q);card.classList.toggle('hidden',!m);if(m&&q.length>1){const d=card.querySelector('details.accordion');if(d)d.open=true;}});}
+  function filterCards(t, b) {
+    document.querySelectorAll('.filter-btn').forEach(function(x){ x.classList.remove('active'); });
+    b.classList.add('active');
+    document.querySelectorAll('.component-card').forEach(function(c){
+      c.classList.toggle('hidden', t !== 'all' && c.dataset.type !== t);
+    });
+  }
+  function searchPages() {
+    var q = document.getElementById('searchInput').value.toLowerCase().trim();
+    document.querySelectorAll('.component-card').forEach(function(card){
+      if (!q) { card.classList.remove('hidden'); return; }
+      var m = card.textContent.toLowerCase().includes(q);
+      card.classList.toggle('hidden', !m);
+      if (m && q.length > 1) {
+        var det = card.querySelector('details');
+        if (det) det.open = true;
+      }
+    });
+  }
 </script>
+
 </body>
 </html>
