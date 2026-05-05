@@ -522,41 +522,87 @@
   <div class="chart-section">
     <div class="chart-title">Component Usage Across the Site</div>
     <div class="chart-sub">Pages per category — one page can appear in multiple categories · 148 content pages audited</div>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 886 294" 
+    <svg id="dynamic-bar-chart" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 886 294" 
      style="width:100%;height:auto;display:block;max-height:320px;">
-  <rect x="230" y="24" width="600" height="22" rx="5" fill="#F1F5F9"/>
-  <rect id="bar0" x="230" y="24" width="0" height="22" rx="5" fill="#0960F6">
-    <animate attributeName="width" from="0" to="600" dur="0.7s" begin="0.0s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1"/></rect>
-    <text x="838" y="40" font-family="&quot;Proxima Nova&quot;, "Montserrat", sans-serif" font-size="12" font-weight="700" fill="#0960F6">81</text>
-    <text x="218" y="40" font-family="&quot;Proxima Nova&quot;, "Montserrat", sans-serif" font-size="12" font-weight="600" fill="#011840" text-anchor="end">White Global Logo Carousel</text>
-    <rect x="230" y="62" width="600" height="22" rx="5" fill="#F1F5F9"/>
-    <rect id="bar1" x="230" y="62" width="0" height="22" rx="5" fill="#7C3AED">
-      <animate attributeName="width" from="0" to="274" dur="0.7s" begin="0.08s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1"/></rect>
-      <text x="512" y="78" font-family="&quot;Proxima Nova&quot;, "Montserrat", sans-serif" font-size="12" font-weight="700" fill="#7C3AED">37</text>
-      <text x="218" y="78" font-family="&quot;Proxima Nova&quot;, "Montserrat", sans-serif" font-size="12" font-weight="600" fill="#011840" text-anchor="end">User Review Badges</text>
-      <rect x="230" y="100" width="600" height="22" rx="5" fill="#F1F5F9"/>
-      <rect id="bar2" x="230" y="100" width="0" height="22" rx="5" fill="#DC2626">
-      <animate attributeName="width" from="0" to="303" dur="0.7s" begin="0.16s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1"/></rect>
-      <text x="541" y="116" font-family="&quot;Proxima Nova&quot;, "Montserrat", sans-serif" font-size="12" font-weight="700" fill="#DC2626">41</text>
-      <text x="218" y="116" font-family="&quot;Proxima Nova&quot;, "Montserrat", sans-serif" font-size="12" font-weight="600" fill="#011840" text-anchor="end">Numbers in Images</text>
-      <rect x="230" y="138" width="600" height="22" rx="5" fill="#F1F5F9"/><rect id="bar3" x="230" y="138" width="0" height="22" rx="5" fill="#16A34A">
-      <animate attributeName="width" from="0" to="303" dur="0.7s" begin="0.24s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1"/></rect>
-      <text x="541" y="154" font-family="&quot;Proxima Nova&quot;, "Montserrat", sans-serif" font-size="12" font-weight="700" fill="#16A34A">41</text>
-      <text x="218" y="154" font-family="&quot;Proxima Nova&quot;, "Montserrat", sans-serif" font-size="12" font-weight="600" fill="#011840" text-anchor="end">Global Stats Widget</text>
-      <rect x="230" y="176" width="600" height="22" rx="5" fill="#F1F5F9"/><rect id="bar4" x="230" y="176" width="0" height="22" rx="5" fill="#D97706">
-      <animate attributeName="width" from="0" to="103" dur="0.7s" begin="0.32s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1"/></rect>
-      <text x="341" y="192" font-family="&quot;Proxima Nova&quot;, "Montserrat", sans-serif" font-size="12" font-weight="700" fill="#D97706">11</text>
-      <text x="218" y="192" font-family="&quot;Proxima Nova&quot;, "Montserrat", sans-serif" font-size="12" font-weight="600" fill="#011840" text-anchor="end">Non-Global Stats Widget</text>
-      <rect x="230" y="214" width="600" height="22" rx="5" fill="#F1F5F9"/>
-      <rect id="bar5" x="230" y="214" width="0" height="22" rx="5" fill="#033180">
-      <animate attributeName="width" from="0" to="37" dur="0.7s" begin="0.4s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1"/></rect>
-      <text x="275" y="230" font-family="&quot;Proxima Nova&quot;, "Montserrat", sans-serif" font-size="12" font-weight="700" fill="#033180">3</text>
-      <text x="218" y="230" font-family="&quot;Proxima Nova&quot;, "Montserrat", sans-serif" font-size="12" font-weight="600" fill="#011840" text-anchor="end">Dark Logo Carousel</text>
-      <rect x="230" y="252" width="600" height="22" rx="5" fill="#F1F5F9"/><rect id="bar6" x="230" y="252" width="0" height="22" rx="5" fill="#E11D48">
-      <animate attributeName="width" from="0" to="59" dur="0.7s" begin="0.48s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1"/></rect>
-      <text x="297" y="268" font-family="&quot;Proxima Nova&quot;, "Montserrat", sans-serif" font-size="12" font-weight="700" fill="#E11D48">8</text>
-      <text x="218" y="268" font-family="&quot;Proxima Nova&quot;, "Montserrat", sans-serif" font-size="12" font-weight="600" fill="#011840" text-anchor="end">Standalone Text Stat</text>
-</svg>
+  <!-- All bar widths and values will be injected by JavaScript -->
+    </svg>
+    <script>
+      // Data for the bars: label, value, color
+      const barData = [
+        {
+          label: 'White Global Logo Carousel',
+          value: 81,
+          color: '#0960F6',
+        },
+        {
+          label: 'User Review Badges',
+          value: 37,
+          color: '#7C3AED',
+        },
+        {
+          label: 'Numbers in Images',
+          value: 24,
+          color: '#DC2626',
+        },
+        {
+          label: 'Global Stats Widget',
+          value: 41,
+          color: '#16A34A',
+        },
+        {
+          label: 'Non-Global Stats Widget',
+          value: 11,
+          color: '#D97706',
+        },
+        {
+          label: 'Dark Logo Carousel',
+          value: 3,
+          color: '#033180',
+        },
+        {
+          label: 'Standalone Text Stat',
+          value: 8,
+          color: '#E11D48',
+        }
+      ];
+      const auditedPages = 148;
+      const maxBarWidth = 600;
+      const barLeftX = 230;
+      const labelX = 218;
+      const valueFontFamily = `'Proxima Nova', "Montserrat", sans-serif`;
+
+      // Find the max value among all bars, use auditedPages cap for scaling
+      const scaleBy = Math.max(...barData.map(b => b.value), auditedPages);
+
+      // Bar vertical spacing
+      const barHeight = 22;
+      const barGap = 16;
+      const sectionTop = 24;
+
+      // Container where chart will be rendered
+      const svg = document.getElementById('dynamic-bar-chart');
+
+      svg.innerHTML = barData.map((bar, i) => {
+        const y = sectionTop + i * (barHeight + barGap);
+        // Scaled width based on page count
+        const barWidth = Math.round((bar.value / scaleBy) * maxBarWidth);
+
+        // Where to position the value number (at end of bar, but not past the chart bounds)
+        const paddedValueX = Math.max(
+          Math.min(barLeftX + barWidth + 8, barLeftX + maxBarWidth - 5),
+          barLeftX + 20
+        );
+
+        return `
+        <rect x="${barLeftX}" y="${y}" width="${maxBarWidth}" height="${barHeight}" rx="5" fill="#F1F5F9"/>
+        <rect id="bar${i}" x="${barLeftX}" y="${y}" width="0" height="${barHeight}" rx="5" fill="${bar.color}">
+          <animate attributeName="width" from="0" to="${barWidth}" dur="0.7s" begin="${(i*0.08).toFixed(2)}s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1"/>
+        </rect>
+        <text x="${paddedValueX}" y="${y + 16}" font-family="${valueFontFamily}" font-size="12" font-weight="700" fill="${bar.color}">${bar.value}</text>
+        <text x="${labelX}" y="${y + 16}" font-family="${valueFontFamily}" font-size="12" font-weight="600" fill="#011840" text-anchor="end">${bar.label}</text>
+        `;
+      }).join('');
+    </script>
   </div>
   <div class="filter-bar">
     <button class="filter-btn active" onclick="filterCards('all',this)">All</button>
@@ -1667,22 +1713,22 @@
     <div class="card-header"><div class="card-icon image">🖼️</div><div class="card-meta">
       <div class="card-title-row"><span class="card-title">Numbers Baked Into Images</span><span class="badge badge-image">In Images</span><span class="card-component-name">user_review_badges · rollup pages</span></div>
       <p class="card-description">Pages with <code>user_review_badges</code> (G2/Capterra badge images with scores embedded) or year-in-review campaign pages with KPIs in static graphics. Cannot be changed via CMS — requires new design assets.</p>
-      <div class="card-stats-row"><span class="stat-pill">41 pages</span><span class="stat-pill">37 via review badges · 3 rollup campaigns · 1 trends report</span><span class="owner owner-pmm">PMM</span></div>
+      <div class="card-stats-row"><span class="stat-pill">24 pages</span><span class="stat-pill">37 via review badges · 3 rollup campaigns · 1 trends report</span><span class="owner owner-pmm">PMM</span></div>
     </div></div>
     <div class="preview-panel"><div class="preview-label">How it looks — numbers embedded in image files, not editable in CMS</div><div class="preview-wrap">
-      <div class="mockup-stats-dark" style="min-width:240px;">
+      <!-- <div class="mockup-stats-dark" style="min-width:240px;">
         <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4);margin-bottom:8px;">Baked into image</div>
         <div class="stat-row"><div class="val">$4B</div><div class="lbl">text is part of the image file</div></div>
         <div class="stat-row"><div class="val">165M</div><div class="lbl">updating requires new design asset</div></div>
         <div class="stat-row"><div class="val">8M</div><div class="lbl">cannot edit in CMS</div></div>
-      </div>
+      </div> -->
       <div style="background:#FEE2E2;border-radius:10px;padding:16px 18px;min-width:200px;flex-shrink:0;display:flex;flex-direction:column;justify-content:center;gap:8px;">
         <div style="font-size:11px;font-weight:700;color:#991B1B;">⚠️ Update process</div>
         <div style="font-size:12px;color:#7F1D1D;line-height:1.5;">1. Get source file from design team<br>2. Update numbers in Figma<br>3. Export new image asset<br>4. Upload to CMS and replace</div>
       </div>
     </div></div>
         <details class="accordion">
-      <summary><span class="summary-left">View all pages <span class="accordion-count">41</span></span><span class="chevron"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="#011840" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></summary>
+      <summary><span class="summary-left">View all pages <span class="accordion-count">24</span></span><span class="chevron"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="#011840" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></summary>
       <div class="accordion-body">        <div class="page-group">
           <div class="page-group-label">Home </div>
           <div class="page-list">
@@ -1693,7 +1739,7 @@
           </div>
           </div>
         </div>
-        <div class="page-group">
+        <!-- <div class="page-group">
           <div class="page-group-label">Single Pages </div>
           <div class="page-list">
           <div class="page-row">
@@ -1702,50 +1748,51 @@
             <span class="page-row-url"><a href="https://www.roller.software/centeredge-software-alternative/" target="_blank">/centeredge-software-alternative/</a></span>
           </div>
           </div>
-        </div>
+        </div> -->
         <div class="page-group">
           <div class="page-group-label">Features Pages <span class="owner owner-pmm">PMM</span></div>
           <div class="page-list">
-          <div class="page-row">
+          <!-- <div class="page-row">
             <span class="page-row-title">ROLLER Software Features</span>
             <span class="owner owner-pmm">PMM</span>
             <span class="page-row-url"><a href="https://www.roller.software/features/" target="_blank">/features/</a></span>
-          </div>
-          <div class="page-row">
+          </div> -->
+          <!-- <div class="page-row">
             <span class="page-row-title">Digital Waiver Software</span>
             <span class="owner owner-pmm">PMM</span>
             <span class="page-row-url"><a href="https://www.roller.software/features/digital-waiver-software/" target="_blank">/features/digital-waiver-software/</a></span>
-          </div>
-          <div class="page-row">
+          </div> -->
+          <!-- <div class="page-row">
             <span class="page-row-title">Gift Card Software</span>
             <span class="owner owner-pmm">PMM</span>
             <span class="page-row-url"><a href="https://www.roller.software/features/giftcard/" target="_blank">/features/giftcard/</a></span>
-          </div>
+          </div> -->
           <div class="page-row">
             <span class="page-row-title">Guest Feedback Software</span>
-            <span class="owner owner-pmm">PMM</span>
+            <span class="owner owner-pmm">PMM</span><span class="page-note-red">To be assessed</span>
             <span class="page-row-url"><a href="https://www.roller.software/features/guest-feedback-software/" target="_blank">/features/guest-feedback-software/</a></span>
           </div>
           <div class="page-row">
             <span class="page-row-title">Membership Management Software</span>
-            <span class="owner owner-pmm">PMM</span>
+            <span class="owner owner-pmm">PMM</span><span class="page-note-red">To be assessed</span>
             <span class="page-row-url"><a href="https://www.roller.software/features/membership-management-software/" target="_blank">/features/membership-management-software/</a></span>
           </div>
           <div class="page-row">
             <span class="page-row-title">Party Booking Software</span>
+            <span class="owner owner-pmm">PMM</span><span class="page-note-red">To be assessed</span>
             <span class="owner owner-pmm">PMM</span>
             <span class="page-row-url"><a href="https://www.roller.software/features/party-booking-software/" target="_blank">/features/party-booking-software/</a></span>
           </div>
-          <div class="page-row">
+          <!-- <div class="page-row">
             <span class="page-row-title">POS System for Attractions</span>
             <span class="owner owner-pmm">PMM</span>
             <span class="page-row-url"><a href="https://www.roller.software/features/pos/" target="_blank">/features/pos/</a></span>
-          </div>
-          <div class="page-row">
+          </div> -->
+          <!-- <div class="page-row">
             <span class="page-row-title">Ticketing Kiosk Software</span>
             <span class="owner owner-pmm">PMM</span>
             <span class="page-row-url"><a href="https://www.roller.software/features/self-service-ticketing-kiosk/" target="_blank">/features/self-service-ticketing-kiosk/</a></span>
-          </div>
+          </div> -->
           </div>
         </div>
         <div class="page-group">
@@ -1753,110 +1800,110 @@
           <div class="page-list">
           <div class="page-row">
             <span class="page-row-title">Cloud-Based Outdoor Adventure Park Management Software</span>
-            <span class="owner owner-pmm">PMM</span>
+            <span class="owner owner-pmm">PMM</span><span class="page-note-red">To be assessed</span>
             <span class="page-row-url"><a href="https://www.roller.software/industries/adventure-parks-software" target="_blank">/industries/adventure-parks-software</a></span>
           </div>
           <div class="page-row">
             <span class="page-row-title">Amusement & Theme Park Software</span>
-            <span class="owner owner-pmm">PMM</span>
+            <span class="owner owner-pmm">PMM</span><span class="page-note-red">To be assessed</span>
             <span class="page-row-url"><a href="https://www.roller.software/industries/amusement-and-theme-parks-software/" target="_blank">/industries/amusement-and-theme-parks-software/</a></span>
           </div>
-          <div class="page-row">
+          <!-- <div class="page-row">
             <span class="page-row-title">Axe Throwing Software</span>
             <span class="owner owner-pmm">PMM</span>
             <span class="page-row-url"><a href="https://www.roller.software/industries/axe-throwing-software" target="_blank">/industries/axe-throwing-software</a></span>
-          </div>
-          <div class="page-row">
+          </div> -->
+          <!-- <div class="page-row">
             <span class="page-row-title">Bowling Alley Software</span>
             <span class="owner owner-pmm">PMM</span>
             <span class="page-row-url"><a href="https://www.roller.software/industries/bowling-alley-management-software" target="_blank">/industries/bowling-alley-management-software</a></span>
-          </div>
+          </div> -->
           <div class="page-row">
             <span class="page-row-title">Climbing Gym Software</span>
-            <span class="owner owner-pmm">PMM</span>
+            <span class="owner owner-pmm">PMM</span><span class="page-note-red">To be assessed</span>
             <span class="page-row-url"><a href="https://www.roller.software/industries/climbing-gyms-software/" target="_blank">/industries/climbing-gyms-software/</a></span>
           </div>
-          <div class="page-row">
+          <!-- <div class="page-row">
             <span class="page-row-title">Escape Room Software</span>
             <span class="owner owner-pmm">PMM</span>
             <span class="page-row-url"><a href="https://www.roller.software/industries/escape-room-software" target="_blank">/industries/escape-room-software</a></span>
-          </div>
-          <div class="page-row">
+          </div> -->
+          <!-- <div class="page-row">
             <span class="page-row-title">Family Entertainment Center Software</span>
             <span class="owner owner-pmm">PMM</span>
             <span class="page-row-url"><a href="https://www.roller.software/industries/family-entertainment-center-software/" target="_blank">/industries/family-entertainment-center-software/</a></span>
-          </div>
+          </div> -->
           <div class="page-row">
             <span class="page-row-title">Go-Karting Software</span>
-            <span class="owner owner-pmm">PMM</span>
+            <span class="owner owner-pmm">PMM</span><span class="page-note-red">To be assessed</span>
             <span class="page-row-url"><a href="https://www.roller.software/industries/go-karting" target="_blank">/industries/go-karting</a></span>
           </div>
           <div class="page-row">
             <span class="page-row-title">Ice Rink Management Software: Scheduling, Ticketing & POS</span>
-            <span class="owner owner-pmm">PMM</span>
+            <span class="owner owner-pmm">PMM</span><span class="page-note-red">To be assessed</span>
             <span class="page-row-url"><a href="https://www.roller.software/industries/ice-skating" target="_blank">/industries/ice-skating</a></span>
           </div>
-          <div class="page-row">
+          <!-- <div class="page-row">
             <span class="page-row-title">Laser Tag Software for Modern Attractions</span>
-            <span class="owner owner-pmm">PMM</span>
+            <span class="owner owner-pmm">PMM</span><span class="page-note-red">To be assessed</span>
             <span class="page-row-url"><a href="https://www.roller.software/industries/laser-tag-software" target="_blank">/industries/laser-tag-software</a></span>
-          </div>
+          </div> -->
           <div class="page-row">
             <span class="page-row-title">Mini Golf Software</span>
-            <span class="owner owner-pmm">PMM</span>
+            <span class="owner owner-pmm">PMM</span><span class="page-note-red">To be assessed</span> 
             <span class="page-row-url"><a href="https://www.roller.software/industries/mini-golf" target="_blank">/industries/mini-golf</a></span>
           </div>
           <div class="page-row">
             <span class="page-row-title">Museum Software</span>
-            <span class="owner owner-pmm">PMM</span>
+            <span class="owner owner-pmm">PMM</span><span class="page-note-red">To be assessed</span>
             <span class="page-row-url"><a href="https://www.roller.software/industries/museums-software/" target="_blank">/industries/museums-software/</a></span>
           </div>
           <div class="page-row">
             <span class="page-row-title">Pickleball Software</span>
-            <span class="owner owner-pmm">PMM</span>
+            <span class="owner owner-pmm">PMM</span><span class="page-note-red">To be assessed</span> 
             <span class="page-row-url"><a href="https://www.roller.software/industries/pickleball-software" target="_blank">/industries/pickleball-software</a></span>
           </div>
           <div class="page-row">
             <span class="page-row-title">Indoor Playground & Soft Play Center Software</span>
-            <span class="owner owner-pmm">PMM</span>
+            <span class="owner owner-pmm">PMM</span><span class="page-note-red">To be assessed</span> 
             <span class="page-row-url"><a href="https://www.roller.software/industries/playground-software" target="_blank">/industries/playground-software</a></span>
           </div>
           <div class="page-row">
             <span class="page-row-title">Roller Skating Rink Management Software</span>
-            <span class="owner owner-pmm">PMM</span>
+            <span class="owner owner-pmm">PMM</span><span class="page-note-red">To be assessed</span>
             <span class="page-row-url"><a href="https://www.roller.software/industries/skating-rink-software/" target="_blank">/industries/skating-rink-software/</a></span>
           </div>
           <div class="page-row">
             <span class="page-row-title">Trampoline Park Software</span>
-            <span class="owner owner-pmm">PMM</span>
+            <span class="owner owner-pmm">PMM</span><span class="page-note-red">To be assessed</span>
             <span class="page-row-url"><a href="https://www.roller.software/industries/trampoline-parks-software/" target="_blank">/industries/trampoline-parks-software/</a></span>
           </div>
           <div class="page-row">
             <span class="page-row-title">Adventure Park Software</span>
-            <span class="owner owner-pmm">PMM</span>
+            <span class="owner owner-pmm">PMM</span><span class="page-note-red">To be assessed</span>
             <span class="page-row-url"><a href="https://www.roller.software/industries/visitor-attractions-software" target="_blank">/industries/visitor-attractions-software</a></span>
           </div>
           <div class="page-row">
             <span class="page-row-title">Aqua Park Management Software</span>
-            <span class="owner owner-pmm">PMM</span>
+            <span class="owner owner-pmm">PMM</span><span class="page-note-red">To be assessed</span>
             <span class="page-row-url"><a href="https://www.roller.software/industries/wake-and-aqua-parks-management-software" target="_blank">/industries/wake-and-aqua-parks-management-software</a></span>
           </div>
           <div class="page-row">
             <span class="page-row-title">Water Park Management Software</span>
-            <span class="owner owner-pmm">PMM</span>
+            <span class="owner owner-pmm">PMM</span><span class="page-note-red">To be assessed</span>
             <span class="page-row-url"><a href="https://www.roller.software/industries/water-parks-management-software/" target="_blank">/industries/water-parks-management-software/</a></span>
           </div>
           <div class="page-row">
             <span class="page-row-title">Zoo & Aquarium Software</span>
-            <span class="owner owner-pmm">PMM</span>
+            <span class="owner owner-pmm">PMM</span><span class="page-note-red">To be assessed</span>
             <span class="page-row-url"><a href="https://www.roller.software/industries/zoos-management-software/" target="_blank">/industries/zoos-management-software/</a></span>
           </div>
           </div>
         </div>
-        <div class="page-group">
+        <!-- <div class="page-group">
           <div class="page-group-label">Competitor Pages <span class="owner owner-pmm">PMM</span></div>
-          <div class="page-list">
-          <div class="page-row">
+          <div class="page-list"> -->
+          <!-- <div class="page-row">
             <span class="page-row-title">ROLLER vs FareHarbor: Features, Pros, Pricing</span>
             <span class="owner owner-pmm">PMM</span>
             <span class="page-row-url"><a href="https://www.roller.software/competitor/fareharbor" target="_blank">/competitor/fareharbor</a></span>
@@ -1865,15 +1912,15 @@
             <span class="page-row-title">ROLLER vs LilYPad: Features, Pros, Pricing</span>
             <span class="owner owner-pmm">PMM</span>
             <span class="page-row-url"><a href="https://www.roller.software/competitor/lilypad-pos" target="_blank">/competitor/lilypad-pos</a></span>
-          </div>
-          <div class="page-row">
+          </div> -->
+          <!-- <div class="page-row">
             <span class="page-row-title">ROLLER vs Rock Gym Pro: Features, Pros, Pricing</span>
             <span class="owner owner-pmm">PMM</span>
             <span class="page-row-url"><a href="https://www.roller.software/competitor/rock-gym-pro" target="_blank">/competitor/rock-gym-pro</a></span>
-          </div>
-          </div>
-        </div>
-        <div class="page-group">
+          </div> -->
+          <!-- </div>
+        </div> -->
+        <!-- <div class="page-group">
           <div class="page-group-label">Solutions Pages <span class="owner owner-pmm">PMM</span></div>
           <div class="page-list">
           <div class="page-row">
@@ -1892,13 +1939,13 @@
             <span class="page-row-url"><a href="https://www.roller.software/solutions/multi-venue" target="_blank">/solutions/multi-venue</a></span>
           </div>
           </div>
-        </div>
+        </div> -->
         <div class="page-group">
           <div class="page-group-label">Professional Services </div>
           <div class="page-list">
           <div class="page-row">
             <span class="page-row-title">Professional Services</span>
-            <span class="owner owner-pmm">PMM</span>
+            <span class="owner owner-pmm">PMM</span><span class="page-note-red">To be assessed</span>
             <span class="page-row-url"><a href="https://www.roller.software/professional-services" target="_blank">/professional-services</a></span>
           </div>
           </div>
