@@ -406,7 +406,9 @@
     .content { padding: 24px 20px 60px; }
     .hero { padding: 32px 20px 28px; }
     .topbar { padding: 14px 20px; }
-    .page-row-url { display: none; }
+    .page-row{display: grid;}
+    .owner-pmm{justify-self: baseline;}
+    /* .page-row-url { display: none; } */
   }
 
   /* ─── CHART ─────────────────────────────────── */
@@ -528,7 +530,7 @@
     <button class="filter-btn" onclick="filterCards('nonglobal',this)">🟡 Non-global</button>
     <button class="filter-btn" onclick="filterCards('image',this)">🔴 Image-baked</button>
     <button class="filter-btn" onclick="filterCards('review',this)">🟣 Review badges</button>
-    <button class="filter-btn" onclick="filterCards('carousel',this)">🔵 Carousel</button>
+    <!-- <button class="filter-btn" onclick="filterCards('carousel',this)">🔵 Carousel</button> -->
     <button class="filter-btn" onclick="filterCards('standalone',this)">🟠 Standalone</button>
     <div class="filter-spacer"></div>
     <!-- <input class="search-box" type="text" placeholder="Search pages…" id="searchInput" oninput="searchPages()"> -->
@@ -1897,9 +1899,9 @@
 
 
 
-  <div class="component-card" data-type="carousel" id="card-carousel">
+  <div class="component-card" data-type="nonglobal" id="card-carousel">
     <div class="card-header"><div class="card-icon carousel">🔄</div><div class="card-meta">
-      <div class="card-title-row"><span class="card-title">Dark Background Logo Set Carousel</span><span class="badge badge-carousel">Carousel</span><span class="card-component-name">global global-logo-set logo-set-module</span></div>
+      <div class="card-title-row"><span class="card-title">Dark Background Logo Set Carousel</span><span class="badge badge-nonglobal">Non-Global</span><span class="card-component-name">global global-logo-set logo-set-module</span></div>
       <p class="card-description">Pages where <code>global global-logo-set logo-set-module</code> was detected without the <code>-global</code> suffix. Animated dark-background customer logo carousel — per-page configuration.</p>
       <div class="card-stats-row"><span class="stat-pill">3 pages</span><span class="stat-pill">Per-page configuration</span><span class="owner owner-pmm">PMM</span><span class="owner owner-ian">Ian</span></div>
     </div></div>
