@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ROLLER — Website Stats & Numbers Registry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 <style>
   /* ─── ROLLER Brand ─────────────────────────────── */
   :root {
@@ -26,7 +29,7 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
-    font-family: "Proxima Nova", Arial, sans-serif;
+    font-family: "Montserrat", sans-serif;
     background: var(--gray-50);
     color: var(--blue-10);
     min-height: 100vh;
@@ -225,7 +228,7 @@
 
   .card-component-name {
     font-size: 12px;
-    font-family: "Courier New", monospace;
+    font-family: "Montserrat", monospace;
     background: var(--gray-100);
     color: var(--gray-700);
     padding: 2px 8px;
@@ -509,10 +512,10 @@
   <h1>Stats &amp; Numbers Registry</h1>
   <p>148 content pages crawled (blog and redirect stubs excluded). A page can appear in multiple categories simultaneously.</p>
   <div class="summary-grid">
-    <div class="summary-card"><div class="num">148</div><div class="label">Content pages audited (sitemap + events + unlisted)</div></div>
+    <div class="summary-card"><div class="num">148</div><div class="label">Published content pages audited (sitemap)</div></div>
     <div class="summary-card"><div class="num" style="color:#86EFAC;">7</div><div class="label"><span class="dot" style="background:#22C55E;"></span>Categories tracked</div></div>
-    <div class="summary-card"><div class="num" style="color:#FDE68A;">81</div><div class="label"><span class="dot" style="background:#F59E0B;"></span>Pages using global logo-set component</div></div>
-    <div class="summary-card"><div class="num" style="color:#FCA5A5;">37</div><div class="label"><span class="dot" style="background:#EF4444;"></span>Pages with user review badge images</div></div>
+    <!-- <div class="summary-card"><div class="num" style="color:#FDE68A;">81</div><div class="label"><span class="dot" style="background:#F59E0B;"></span>Pages using global logo-set component</div></div>
+    <div class="summary-card"><div class="num" style="color:#FCA5A5;">37</div><div class="label"><span class="dot" style="background:#EF4444;"></span>Pages with user review badge images</div></div> -->
   </div>
 </div>
 <div class="content">
@@ -521,7 +524,38 @@
     <div class="chart-sub">Pages per category — one page can appear in multiple categories · 148 content pages audited</div>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 886 294" 
      style="width:100%;height:auto;display:block;max-height:320px;">
-  <rect x="230" y="24" width="600" height="22" rx="5" fill="#F1F5F9"/><rect id="bar0" x="230" y="24" width="0" height="22" rx="5" fill="#0960F6"><animate attributeName="width" from="0" to="600" dur="0.7s" begin="0.0s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1"/></rect><text x="838" y="40" font-family="&quot;Proxima Nova&quot;, Arial, sans-serif" font-size="12" font-weight="700" fill="#0960F6">81</text><text x="218" y="40" font-family="&quot;Proxima Nova&quot;, Arial, sans-serif" font-size="12" font-weight="600" fill="#011840" text-anchor="end">White Global Logo Carousel</text><rect x="230" y="62" width="600" height="22" rx="5" fill="#F1F5F9"/><rect id="bar1" x="230" y="62" width="0" height="22" rx="5" fill="#7C3AED"><animate attributeName="width" from="0" to="274" dur="0.7s" begin="0.08s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1"/></rect><text x="512" y="78" font-family="&quot;Proxima Nova&quot;, Arial, sans-serif" font-size="12" font-weight="700" fill="#7C3AED">37</text><text x="218" y="78" font-family="&quot;Proxima Nova&quot;, Arial, sans-serif" font-size="12" font-weight="600" fill="#011840" text-anchor="end">User Review Badges</text><rect x="230" y="100" width="600" height="22" rx="5" fill="#F1F5F9"/><rect id="bar2" x="230" y="100" width="0" height="22" rx="5" fill="#DC2626"><animate attributeName="width" from="0" to="303" dur="0.7s" begin="0.16s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1"/></rect><text x="541" y="116" font-family="&quot;Proxima Nova&quot;, Arial, sans-serif" font-size="12" font-weight="700" fill="#DC2626">41</text><text x="218" y="116" font-family="&quot;Proxima Nova&quot;, Arial, sans-serif" font-size="12" font-weight="600" fill="#011840" text-anchor="end">Numbers in Images</text><rect x="230" y="138" width="600" height="22" rx="5" fill="#F1F5F9"/><rect id="bar3" x="230" y="138" width="0" height="22" rx="5" fill="#16A34A"><animate attributeName="width" from="0" to="303" dur="0.7s" begin="0.24s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1"/></rect><text x="541" y="154" font-family="&quot;Proxima Nova&quot;, Arial, sans-serif" font-size="12" font-weight="700" fill="#16A34A">41</text><text x="218" y="154" font-family="&quot;Proxima Nova&quot;, Arial, sans-serif" font-size="12" font-weight="600" fill="#011840" text-anchor="end">Global Stats Widget</text><rect x="230" y="176" width="600" height="22" rx="5" fill="#F1F5F9"/><rect id="bar4" x="230" y="176" width="0" height="22" rx="5" fill="#D97706"><animate attributeName="width" from="0" to="103" dur="0.7s" begin="0.32s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1"/></rect><text x="341" y="192" font-family="&quot;Proxima Nova&quot;, Arial, sans-serif" font-size="12" font-weight="700" fill="#D97706">11</text><text x="218" y="192" font-family="&quot;Proxima Nova&quot;, Arial, sans-serif" font-size="12" font-weight="600" fill="#011840" text-anchor="end">Non-Global Stats Widget</text><rect x="230" y="214" width="600" height="22" rx="5" fill="#F1F5F9"/><rect id="bar5" x="230" y="214" width="0" height="22" rx="5" fill="#033180"><animate attributeName="width" from="0" to="37" dur="0.7s" begin="0.4s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1"/></rect><text x="275" y="230" font-family="&quot;Proxima Nova&quot;, Arial, sans-serif" font-size="12" font-weight="700" fill="#033180">3</text><text x="218" y="230" font-family="&quot;Proxima Nova&quot;, Arial, sans-serif" font-size="12" font-weight="600" fill="#011840" text-anchor="end">Dark Logo Carousel</text><rect x="230" y="252" width="600" height="22" rx="5" fill="#F1F5F9"/><rect id="bar6" x="230" y="252" width="0" height="22" rx="5" fill="#E11D48"><animate attributeName="width" from="0" to="59" dur="0.7s" begin="0.48s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1"/></rect><text x="297" y="268" font-family="&quot;Proxima Nova&quot;, Arial, sans-serif" font-size="12" font-weight="700" fill="#E11D48">8</text><text x="218" y="268" font-family="&quot;Proxima Nova&quot;, Arial, sans-serif" font-size="12" font-weight="600" fill="#011840" text-anchor="end">Standalone Text Stat</text>
+  <rect x="230" y="24" width="600" height="22" rx="5" fill="#F1F5F9"/>
+  <rect id="bar0" x="230" y="24" width="0" height="22" rx="5" fill="#0960F6">
+    <animate attributeName="width" from="0" to="600" dur="0.7s" begin="0.0s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1"/></rect>
+    <text x="838" y="40" font-family="&quot;Proxima Nova&quot;, "Montserrat", sans-serif" font-size="12" font-weight="700" fill="#0960F6">81</text>
+    <text x="218" y="40" font-family="&quot;Proxima Nova&quot;, "Montserrat", sans-serif" font-size="12" font-weight="600" fill="#011840" text-anchor="end">White Global Logo Carousel</text>
+    <rect x="230" y="62" width="600" height="22" rx="5" fill="#F1F5F9"/>
+    <rect id="bar1" x="230" y="62" width="0" height="22" rx="5" fill="#7C3AED">
+      <animate attributeName="width" from="0" to="274" dur="0.7s" begin="0.08s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1"/></rect>
+      <text x="512" y="78" font-family="&quot;Proxima Nova&quot;, "Montserrat", sans-serif" font-size="12" font-weight="700" fill="#7C3AED">37</text>
+      <text x="218" y="78" font-family="&quot;Proxima Nova&quot;, "Montserrat", sans-serif" font-size="12" font-weight="600" fill="#011840" text-anchor="end">User Review Badges</text>
+      <rect x="230" y="100" width="600" height="22" rx="5" fill="#F1F5F9"/>
+      <rect id="bar2" x="230" y="100" width="0" height="22" rx="5" fill="#DC2626">
+      <animate attributeName="width" from="0" to="303" dur="0.7s" begin="0.16s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1"/></rect>
+      <text x="541" y="116" font-family="&quot;Proxima Nova&quot;, "Montserrat", sans-serif" font-size="12" font-weight="700" fill="#DC2626">41</text>
+      <text x="218" y="116" font-family="&quot;Proxima Nova&quot;, "Montserrat", sans-serif" font-size="12" font-weight="600" fill="#011840" text-anchor="end">Numbers in Images</text>
+      <rect x="230" y="138" width="600" height="22" rx="5" fill="#F1F5F9"/><rect id="bar3" x="230" y="138" width="0" height="22" rx="5" fill="#16A34A">
+      <animate attributeName="width" from="0" to="303" dur="0.7s" begin="0.24s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1"/></rect>
+      <text x="541" y="154" font-family="&quot;Proxima Nova&quot;, "Montserrat", sans-serif" font-size="12" font-weight="700" fill="#16A34A">41</text>
+      <text x="218" y="154" font-family="&quot;Proxima Nova&quot;, "Montserrat", sans-serif" font-size="12" font-weight="600" fill="#011840" text-anchor="end">Global Stats Widget</text>
+      <rect x="230" y="176" width="600" height="22" rx="5" fill="#F1F5F9"/><rect id="bar4" x="230" y="176" width="0" height="22" rx="5" fill="#D97706">
+      <animate attributeName="width" from="0" to="103" dur="0.7s" begin="0.32s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1"/></rect>
+      <text x="341" y="192" font-family="&quot;Proxima Nova&quot;, "Montserrat", sans-serif" font-size="12" font-weight="700" fill="#D97706">11</text>
+      <text x="218" y="192" font-family="&quot;Proxima Nova&quot;, "Montserrat", sans-serif" font-size="12" font-weight="600" fill="#011840" text-anchor="end">Non-Global Stats Widget</text>
+      <rect x="230" y="214" width="600" height="22" rx="5" fill="#F1F5F9"/>
+      <rect id="bar5" x="230" y="214" width="0" height="22" rx="5" fill="#033180">
+      <animate attributeName="width" from="0" to="37" dur="0.7s" begin="0.4s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1"/></rect>
+      <text x="275" y="230" font-family="&quot;Proxima Nova&quot;, "Montserrat", sans-serif" font-size="12" font-weight="700" fill="#033180">3</text>
+      <text x="218" y="230" font-family="&quot;Proxima Nova&quot;, "Montserrat", sans-serif" font-size="12" font-weight="600" fill="#011840" text-anchor="end">Dark Logo Carousel</text>
+      <rect x="230" y="252" width="600" height="22" rx="5" fill="#F1F5F9"/><rect id="bar6" x="230" y="252" width="0" height="22" rx="5" fill="#E11D48">
+      <animate attributeName="width" from="0" to="59" dur="0.7s" begin="0.48s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1"/></rect>
+      <text x="297" y="268" font-family="&quot;Proxima Nova&quot;, "Montserrat", sans-serif" font-size="12" font-weight="700" fill="#E11D48">8</text>
+      <text x="218" y="268" font-family="&quot;Proxima Nova&quot;, "Montserrat", sans-serif" font-size="12" font-weight="600" fill="#011840" text-anchor="end">Standalone Text Stat</text>
 </svg>
   </div>
   <div class="filter-bar">
